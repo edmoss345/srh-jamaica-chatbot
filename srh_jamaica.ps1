@@ -1,5 +1,5 @@
 
-$source_files = @("srh_registration","srh_entry","srh_content_answer","srh_content_navigation","srh_content","srh_safeguarding","srh_wfr_interaction")
+$source_files = @("srh_registration","srh_entry","srh_content_answer","srh_content_navigation","srh_content","srh_safeguarding")
 
 
 for ($i=0; $i -lt $source_files.length; $i++) {
@@ -29,10 +29,11 @@ for ($i=0; $i -lt $source_files.length; $i++) {
     $source_file_name = $source_file_name + "_no_QR"
     $select_phrases_file = ".\edits\select_phrases.json"
     $special_words = ".\edits\special_words.json"
+    $add_selectors = "yes"
     $output_path_4 = ".\temp\"
     $output_name_4 = $source_file_name 
 
-    node ..\idems_translation\chatbot\index.js move_quick_replies $input_path $select_phrases_file $output_name_4 $output_path_4 true $special_words
+    node ..\idems_translation\chatbot\index.js move_quick_replies $input_path $select_phrases_file $output_name_4 $output_path_4 $add_selectors $special_words
     Write-Output "Removed quick replies"
 
     # step 5: safeguarding
@@ -53,7 +54,7 @@ for ($i=0; $i -lt $source_files.length; $i++) {
     }
 
     # step final: split in 2 json files because it's too heavy to load (need to replace wrong flow names)
-    if($source_file_name -match 'srh_content_navigation'  ){
+    if($source_file_name -match 'srh_content'  ){
         $input_path_6 = $output_path_5 
         $n_file = 2
         node ..\idems-chatbot-repo\split_in_multiple_json_files.js $input_path_6 $n_file
