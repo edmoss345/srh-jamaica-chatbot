@@ -2044,5 +2044,29 @@
       },
       "Translation": {}
     }
+  ],
+  "Counsellor": [
+    {
+      "English": {
+        "keywords": [
+          "counsellor",
+          "counselor"
+        ],
+        "mispellings": []
+      },
+      "Translation": {}
+    }
+  ],
+  "Register": [
+    {
+      "English": {
+        "keywords": [
+          "register",
+          "registration"
+        ],
+        "mispellings": []
+      },
+      "Translation": {}
+    }
   ]
 }
