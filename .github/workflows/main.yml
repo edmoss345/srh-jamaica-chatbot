@@ -1,5 +1,11 @@
 name: Custom Workflow
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       input1:
@@ -7,12 +13,12 @@ on:
         required: true
 
 jobs:
-  deploy:
+  check_input:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Take Input
+      - name: Print Input
         run: |
           echo "Confirmint your input was ${{ github.event.inputs.input1 }}"
