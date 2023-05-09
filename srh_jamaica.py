@@ -16,7 +16,7 @@ def main():
         # os.chdir("..\\srh-jamaica-chatbot")
         
         print("created " + source_file_name)
-        input_path = ".\\flows\\" + source_file_name + ".json"
+        input_path = "./flows/" + source_file_name + ".json"
 
         # # step 2: flow edits & A/B testing
         # SPREADSHEET_ID = "17q1mSyZU9Eu9-oHTE5zg20qrkkngfTlbgxjo2hOia_Q"
@@ -33,13 +33,13 @@ def main():
 
         # step 4: add quick replies to message text and translation
         source_file_name = source_file_name + "_no_QR"
-        select_phrases_file = ".\\edits\\select_phrases.json"
-        special_words = ".\\edits\\special_words.json"
+        select_phrases_file = "./edits/select_phrases.json"
+        special_words = "./edits/special_words.json"
         add_selectors = "yes"
-        output_path_4 = ".\\temp\\"
+        output_path_4 = "./temp/"
         output_name_4 = source_file_name
 
-        subprocess.run(["node", ".\\node_modules\\idems_translation_chatbot\\index.js", "move_quick_replies", input_path, select_phrases_file, output_name_4, output_path_4, add_selectors, special_words])
+        subprocess.run(["node", "./node_modules/idems_translation_chatbot/index.js", "move_quick_replies", input_path, select_phrases_file, output_name_4, output_path_4, add_selectors, special_words])
         print("Removed quick replies")
 
         # # step 5: safeguarding
