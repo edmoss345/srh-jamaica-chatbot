@@ -8,15 +8,15 @@ def main():
 
     for i in range(len(source_files)):
 
-        # source_file_name = source_files[i]
+        source_file_name = source_files[i]
 
         # os.chdir("../rapidpro-flow-toolkit")
         # output_flow_path = "../srh-jamaica-chatbot/flows/" + source_files[i] + ".json"
         # subprocess.run(["python", "main.py", "create_flows", spreadsheet_IDS[i], output_flow_path, "--format=google_sheets", "--datamodels=tests.input.srh_chatbot.srh_models"])
         # os.chdir("../srh-jamaica-chatbot")
         
-        # print("created " + source_file_name)
-        # input_path = "./flows/" + source_file_name + ".json"
+        print("created " + source_file_name)
+        input_path = "./flows/" + source_file_name + ".json"
 
         # # step 2: flow edits & A/B testing
         # SPREADSHEET_ID = "17q1mSyZU9Eu9-oHTE5zg20qrkkngfTlbgxjo2hOia_Q"
