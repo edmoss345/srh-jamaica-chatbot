@@ -22,3 +22,13 @@ jobs:
       - name: Print Input
         run: |
           echo "Confirming your input was ${{ github.event.inputs.input1 }}"
+
+  core-function:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Python function
+        run: python srh_jamaica.py
