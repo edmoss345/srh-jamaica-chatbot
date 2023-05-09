@@ -21,4 +21,4 @@ jobs:
       
       - name: Print Input
         run: |
-          echo "Confirmint your input was ${{ github.event.inputs.input1 }}"
+          echo "Confirming your input was ${{ github.event.inputs.input1 }}"
