@@ -1,0 +1,4132 @@
+{
+  "campaigns": [],
+  "fields": [],
+  "flows": [
+    {
+      "uuid": "5f565cc0-a653-4cc1-a650-077f091d13e7",
+      "name": "SRH - Registration",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "79a97f2a-2801-4aaa-9b63-878550b106da",
+          "exits": [
+            {
+              "destination_uuid": "ed83a591-4c4a-4d6f-abab-86e2860c9d19",
+              "uuid": "be75068a-78f1-4807-8490-0eb848fd8d80"
+            },
+            {
+              "destination_uuid": "c90b5198-38b9-48e3-a624-ce280838c680",
+              "uuid": "f3ee38b0-90f3-4944-a433-293655ad42f8"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.avatar",
+            "cases": [
+              {
+                "uuid": "00827c39-3a8e-47c9-b2e4-c9d2b8916343",
+                "type": "has_text",
+                "category_uuid": "0d887e13-fa74-4de6-aefd-5c0088f48e1c",
+                "arguments": []
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "0d887e13-fa74-4de6-aefd-5c0088f48e1c",
+                "name": "has avatar",
+                "exit_uuid": "be75068a-78f1-4807-8490-0eb848fd8d80"
+              },
+              {
+                "uuid": "d4517d71-f8c1-4f57-b72d-ebb15371a7ec",
+                "name": "Other",
+                "exit_uuid": "f3ee38b0-90f3-4944-a433-293655ad42f8"
+              }
+            ],
+            "default_category_uuid": "d4517d71-f8c1-4f57-b72d-ebb15371a7ec",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "c90b5198-38b9-48e3-a624-ce280838c680",
+          "exits": [
+            {
+              "destination_uuid": "62c676c7-e14d-401d-b133-021f9c9045e1",
+              "uuid": "d61b4033-ae07-4ae6-a821-e5a8c5c73f5e"
+            },
+            {
+              "destination_uuid": "62c676c7-e14d-401d-b133-021f9c9045e1",
+              "uuid": "ebedb70d-5e4e-429e-aa1e-abbb6801cb09"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "89eb2b81-a838-427a-b7db-f4782b74f8a9",
+              "flow": {
+                "name": "SRH - Set up default contact fields",
+                "uuid": "fdccb5ba-ff8f-4bfb-a940-9f484dbe4d6c"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "38a489cc-ba82-48bf-9249-5d989d89b8d6",
+                "type": "has_only_text",
+                "category_uuid": "3fde123a-ce68-4976-98c7-902ecada54a0",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "01f1baff-8460-47bc-9460-bc63c90138cd",
+                "type": "has_only_text",
+                "category_uuid": "8dec3ad1-ee46-4930-bc2c-de5c15cd8496",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "3fde123a-ce68-4976-98c7-902ecada54a0",
+                "name": "Complete",
+                "exit_uuid": "d61b4033-ae07-4ae6-a821-e5a8c5c73f5e"
+              },
+              {
+                "uuid": "8dec3ad1-ee46-4930-bc2c-de5c15cd8496",
+                "name": "Expired",
+                "exit_uuid": "ebedb70d-5e4e-429e-aa1e-abbb6801cb09"
+              }
+            ],
+            "default_category_uuid": "8dec3ad1-ee46-4930-bc2c-de5c15cd8496"
+          }
+        },
+        {
+          "uuid": "62c676c7-e14d-401d-b133-021f9c9045e1",
+          "exits": [
+            {
+              "destination_uuid": "40719296-f731-4693-96f1-7987c50562ce",
+              "uuid": "eb676a63-9d87-429c-b9d7-a122297269e1"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "281b3c48-c9fa-4cbb-92a4-314ada63fe78",
+              "type": "send_msg",
+              "text": "Welcome to National Family Planning Board (NFPB) Yute Expression Chat, brought to you by U-Report, UNICEF!",
+              "attachments": [
+                "image:@(fields.srh_image_path & \"Yute_Expression_Graphic_Intro.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "40719296-f731-4693-96f1-7987c50562ce",
+          "exits": [
+            {
+              "destination_uuid": "533ef802-0aef-4ace-a158-3460712a1a14",
+              "uuid": "9caec49f-1953-4058-89e8-e8178d993f53"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "22e0e8d6-eb0c-4305-9f7f-bdca4c8cb738"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "fcef6298-7567-40dc-866b-f4d11938e380",
+              "flow": {
+                "name": "SRH - Registration - Avatar",
+                "uuid": "af41a3c8-ee2d-46d8-adab-0687e6a12792"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "26504813-aa1d-4a3e-830b-cf6fccea9591",
+                "type": "has_only_text",
+                "category_uuid": "bf81585f-6c4d-425b-aee2-c18a22f92cd7",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "76996a4c-bc15-4da2-b7a9-13d16f488c6c",
+                "type": "has_only_text",
+                "category_uuid": "d85c3058-19af-4381-a5fa-e37b410e7c00",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "bf81585f-6c4d-425b-aee2-c18a22f92cd7",
+                "name": "Complete",
+                "exit_uuid": "9caec49f-1953-4058-89e8-e8178d993f53"
+              },
+              {
+                "uuid": "d85c3058-19af-4381-a5fa-e37b410e7c00",
+                "name": "Expired",
+                "exit_uuid": "22e0e8d6-eb0c-4305-9f7f-bdca4c8cb738"
+              }
+            ],
+            "default_category_uuid": "d85c3058-19af-4381-a5fa-e37b410e7c00"
+          }
+        },
+        {
+          "uuid": "ed83a591-4c4a-4d6f-abab-86e2860c9d19",
+          "exits": [
+            {
+              "destination_uuid": "533ef802-0aef-4ace-a158-3460712a1a14",
+              "uuid": "c700fba5-55f6-4c26-a3ff-fc582620794f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "34580a0e-9054-480e-b43c-eb19c8bae82b",
+              "type": "send_msg",
+              "text": "Welcome back to National Family Planning Board (NFPB) Yute Expression Chat, brought to you by U-Report, UNICEF!",
+              "attachments": [
+                "image:@(fields.srh_image_path & \"Yute_Expression_Graphic_Intro.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "533ef802-0aef-4ace-a158-3460712a1a14",
+          "exits": [
+            {
+              "destination_uuid": "a0fdc1f7-6913-4b31-ba11-f035608ba98e",
+              "uuid": "4b397069-bc60-496e-8c83-86795d1f7709"
+            },
+            {
+              "destination_uuid": "73189b31-574b-46cf-9c77-e02ceaf4f284",
+              "uuid": "a96b061a-a316-4c9e-b28d-f79886e7f32a"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.has_srh_nickname",
+            "cases": [
+              {
+                "uuid": "262d55f5-5c2d-4848-8a03-71d3a65850cb",
+                "type": "has_any_word",
+                "category_uuid": "ce3b712c-9019-438c-a634-a789de33a11c",
+                "arguments": [
+                  "yes"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "ce3b712c-9019-438c-a634-a789de33a11c",
+                "name": "has nickname",
+                "exit_uuid": "4b397069-bc60-496e-8c83-86795d1f7709"
+              },
+              {
+                "uuid": "53f20b58-70e4-4f8e-b86d-da6d8d45f64d",
+                "name": "Other",
+                "exit_uuid": "a96b061a-a316-4c9e-b28d-f79886e7f32a"
+              }
+            ],
+            "default_category_uuid": "53f20b58-70e4-4f8e-b86d-da6d8d45f64d",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "73189b31-574b-46cf-9c77-e02ceaf4f284",
+          "exits": [
+            {
+              "destination_uuid": "a0fdc1f7-6913-4b31-ba11-f035608ba98e",
+              "uuid": "32e2a36f-1cc2-4a26-85f1-8487e0ba0fbf"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "c896553c-3f51-45da-aff4-433cbbc4920a"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "e81c5d3d-655a-4f12-814c-034b18b475d5",
+              "flow": {
+                "name": "SRH - Registration - Nickname",
+                "uuid": "2d88ccec-a862-4f62-aeaa-839a2c857a9b"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "315f29b5-c3a6-4555-9e9c-bb4d0f659e63",
+                "type": "has_only_text",
+                "category_uuid": "9377f668-6df2-44cf-9e29-922d5b2f4b01",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "e6c13d2a-53f0-4785-a0b2-2bcbd30e33df",
+                "type": "has_only_text",
+                "category_uuid": "ca5eff6c-5cf9-4522-8899-0e49b6255079",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "9377f668-6df2-44cf-9e29-922d5b2f4b01",
+                "name": "Complete",
+                "exit_uuid": "32e2a36f-1cc2-4a26-85f1-8487e0ba0fbf"
+              },
+              {
+                "uuid": "ca5eff6c-5cf9-4522-8899-0e49b6255079",
+                "name": "Expired",
+                "exit_uuid": "c896553c-3f51-45da-aff4-433cbbc4920a"
+              }
+            ],
+            "default_category_uuid": "ca5eff6c-5cf9-4522-8899-0e49b6255079"
+          }
+        },
+        {
+          "uuid": "a0fdc1f7-6913-4b31-ba11-f035608ba98e",
+          "exits": [
+            {
+              "destination_uuid": "b32cf1be-1f76-4580-893c-135f6a34a7df",
+              "uuid": "b4592547-0d8f-436d-a499-a2e74323000c"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "714f44f4-6af5-4923-90db-6b341781e3a3",
+              "type": "send_msg",
+              "text": "Before we move on, tell me a little about who I'm speaking to.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "b32cf1be-1f76-4580-893c-135f6a34a7df",
+          "exits": [
+            {
+              "destination_uuid": "68a9497c-54d1-4154-9a7b-0de96c7b8961",
+              "uuid": "3f8b9364-48ca-4a85-8c9e-4536cfdea8b3"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "b1864e41-e866-449b-ae7c-22ce4d493e2a",
+              "type": "send_msg",
+              "text": "Just so you know, this chat is private and confidential. Nothing, including your phone number, is stored and your conversations will not be saved.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "68a9497c-54d1-4154-9a7b-0de96c7b8961",
+          "exits": [
+            {
+              "destination_uuid": "bf030dc1-a751-4cea-ad4c-b9e4df5f4b74",
+              "uuid": "18b7ac09-70bf-4e31-b415-c533317f1125"
+            },
+            {
+              "destination_uuid": "0dd2d3aa-f9b9-471a-b732-09e3f4b43270",
+              "uuid": "2f96fcfe-1d5a-4fd3-87c2-cd5dcc5b310a"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.age_range",
+            "cases": [
+              {
+                "uuid": "18c46cb2-2a11-4ed0-a4b9-61ad617a78e0",
+                "type": "has_text",
+                "category_uuid": "71327bb9-48b5-4832-a4d3-f7f241f46817",
+                "arguments": []
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "71327bb9-48b5-4832-a4d3-f7f241f46817",
+                "name": "has age",
+                "exit_uuid": "18b7ac09-70bf-4e31-b415-c533317f1125"
+              },
+              {
+                "uuid": "a7e87534-9f1f-4039-9a14-92f8df5279e1",
+                "name": "Other",
+                "exit_uuid": "2f96fcfe-1d5a-4fd3-87c2-cd5dcc5b310a"
+              }
+            ],
+            "default_category_uuid": "a7e87534-9f1f-4039-9a14-92f8df5279e1",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "0dd2d3aa-f9b9-471a-b732-09e3f4b43270",
+          "exits": [
+            {
+              "destination_uuid": "aebf5bd9-e5bd-40e0-b7a5-9a654304f7c6",
+              "uuid": "3430560c-e664-49f1-9de7-087bbfe134f5"
+            },
+            {
+              "destination_uuid": "0aade339-be3e-4c8e-b28b-a8c770495ecc",
+              "uuid": "642e9d00-5b95-4b64-8a54-1d479551b064"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "537ff363-5af0-484b-a6c0-56b3cf52c08f",
+              "flow": {
+                "name": "SRH - Registration - Age",
+                "uuid": "6a098eb7-6fe4-4e47-a31a-307c18d31fad"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "23188eeb-4fd4-466a-90e2-b6cff89e416a",
+                "type": "has_only_text",
+                "category_uuid": "9528f378-5d04-43d9-9bd8-199541eb7dd6",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "e5aebde3-05fe-43ee-ab4b-c96f8ed35471",
+                "type": "has_only_text",
+                "category_uuid": "cec42601-20ac-457d-9514-c23db3ac43a2",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "9528f378-5d04-43d9-9bd8-199541eb7dd6",
+                "name": "Complete",
+                "exit_uuid": "3430560c-e664-49f1-9de7-087bbfe134f5"
+              },
+              {
+                "uuid": "cec42601-20ac-457d-9514-c23db3ac43a2",
+                "name": "Expired",
+                "exit_uuid": "642e9d00-5b95-4b64-8a54-1d479551b064"
+              }
+            ],
+            "default_category_uuid": "cec42601-20ac-457d-9514-c23db3ac43a2"
+          }
+        },
+        {
+          "uuid": "bf030dc1-a751-4cea-ad4c-b9e4df5f4b74",
+          "exits": [
+            {
+              "destination_uuid": "36d2ac79-13ec-44b7-b66d-7c1298b52a6b",
+              "uuid": "6f798a22-edfe-463d-9b0d-4956a426a530"
+            },
+            {
+              "destination_uuid": "aebf5bd9-e5bd-40e0-b7a5-9a654304f7c6",
+              "uuid": "cfb0284a-fb5f-4b5e-8a0a-9c29f2127ede"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.gender",
+            "cases": [
+              {
+                "uuid": "985af81b-7ea8-4ea4-b1b9-8df18c7f6813",
+                "type": "has_text",
+                "category_uuid": "4b4f97c1-4777-48ec-a268-c9b06f4df5e7",
+                "arguments": []
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "4b4f97c1-4777-48ec-a268-c9b06f4df5e7",
+                "name": "has gender",
+                "exit_uuid": "6f798a22-edfe-463d-9b0d-4956a426a530"
+              },
+              {
+                "uuid": "4700c2a1-e7ed-4b24-85d0-a079c784b362",
+                "name": "Other",
+                "exit_uuid": "cfb0284a-fb5f-4b5e-8a0a-9c29f2127ede"
+              }
+            ],
+            "default_category_uuid": "4700c2a1-e7ed-4b24-85d0-a079c784b362",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "aebf5bd9-e5bd-40e0-b7a5-9a654304f7c6",
+          "exits": [
+            {
+              "destination_uuid": "64ddcf3d-0839-4ed3-b01a-b178a7aa7753",
+              "uuid": "84c85027-f5fb-40f3-94a3-2af9a36daa28"
+            },
+            {
+              "destination_uuid": "0aade339-be3e-4c8e-b28b-a8c770495ecc",
+              "uuid": "d3d9bf11-99a3-442d-bfd1-9b856a96dd5a"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "902653bf-968e-4b98-98b4-3068b93e8aca",
+              "flow": {
+                "name": "SRH - Registration - Gender",
+                "uuid": "94c7b27f-f86b-4850-b066-be32f674b1c7"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "40b9efa3-08c0-46b3-8e43-ccbd99d3cf36",
+                "type": "has_only_text",
+                "category_uuid": "d6b23fa0-8729-4017-8d22-1a8daf47d5c6",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "478a2219-e7c4-43ff-89fe-66440c2affa8",
+                "type": "has_only_text",
+                "category_uuid": "cc0a06a6-57c0-472e-b676-fcd67022d624",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "d6b23fa0-8729-4017-8d22-1a8daf47d5c6",
+                "name": "Complete",
+                "exit_uuid": "84c85027-f5fb-40f3-94a3-2af9a36daa28"
+              },
+              {
+                "uuid": "cc0a06a6-57c0-472e-b676-fcd67022d624",
+                "name": "Expired",
+                "exit_uuid": "d3d9bf11-99a3-442d-bfd1-9b856a96dd5a"
+              }
+            ],
+            "default_category_uuid": "cc0a06a6-57c0-472e-b676-fcd67022d624"
+          }
+        },
+        {
+          "uuid": "36d2ac79-13ec-44b7-b66d-7c1298b52a6b",
+          "exits": [
+            {
+              "destination_uuid": "8c34ddc4-ffb7-4e14-905b-ca781ab8ad88",
+              "uuid": "77d6cc20-502d-4f01-9b15-96e44f57b92b"
+            },
+            {
+              "destination_uuid": "64ddcf3d-0839-4ed3-b01a-b178a7aa7753",
+              "uuid": "aaf0fbb8-d82c-44dc-9f9c-4649c8e40f85"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.region",
+            "cases": [
+              {
+                "uuid": "1993bcf7-baf5-4a0f-b22b-76805530a730",
+                "type": "has_text",
+                "category_uuid": "d3a5db05-6cfc-4651-80f1-488bcd666e14",
+                "arguments": []
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "d3a5db05-6cfc-4651-80f1-488bcd666e14",
+                "name": "has parish",
+                "exit_uuid": "77d6cc20-502d-4f01-9b15-96e44f57b92b"
+              },
+              {
+                "uuid": "ff1d18d0-bf39-4763-b444-1ad4e8fb13f4",
+                "name": "Other",
+                "exit_uuid": "aaf0fbb8-d82c-44dc-9f9c-4649c8e40f85"
+              }
+            ],
+            "default_category_uuid": "ff1d18d0-bf39-4763-b444-1ad4e8fb13f4",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "64ddcf3d-0839-4ed3-b01a-b178a7aa7753",
+          "exits": [
+            {
+              "destination_uuid": "8c34ddc4-ffb7-4e14-905b-ca781ab8ad88",
+              "uuid": "164b2c44-bfc6-4923-9fac-b1486fb3f0d6"
+            },
+            {
+              "destination_uuid": "0aade339-be3e-4c8e-b28b-a8c770495ecc",
+              "uuid": "e8dc7c02-336c-4833-a687-08760bf7a71a"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "e576f37d-839f-43ed-a8c4-96ec514ec256",
+              "flow": {
+                "name": "SRH - Registration - Parish",
+                "uuid": "46caa6be-b017-42fa-8cf7-724eb90d83aa"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "276cb97b-6319-475c-8697-68385491f7cf",
+                "type": "has_only_text",
+                "category_uuid": "7129f3c8-c829-4f93-9ef4-681168ed4324",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "28b96314-59d0-47c4-a047-10f2736f5ee0",
+                "type": "has_only_text",
+                "category_uuid": "02c49b61-bca1-4286-8b06-c6267174bed0",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "7129f3c8-c829-4f93-9ef4-681168ed4324",
+                "name": "Complete",
+                "exit_uuid": "164b2c44-bfc6-4923-9fac-b1486fb3f0d6"
+              },
+              {
+                "uuid": "02c49b61-bca1-4286-8b06-c6267174bed0",
+                "name": "Expired",
+                "exit_uuid": "e8dc7c02-336c-4833-a687-08760bf7a71a"
+              }
+            ],
+            "default_category_uuid": "02c49b61-bca1-4286-8b06-c6267174bed0"
+          }
+        },
+        {
+          "uuid": "8c34ddc4-ffb7-4e14-905b-ca781ab8ad88",
+          "exits": [
+            {
+              "destination_uuid": "0aade339-be3e-4c8e-b28b-a8c770495ecc",
+              "uuid": "7b846512-1173-481f-849f-0a6ebe566793"
+            }
+          ],
+          "actions": [
+            {
+              "type": "add_contact_groups",
+              "uuid": "b038c13a-30ac-4b37-978e-5d0dfca297aa",
+              "groups": [
+                {
+                  "name": "srh completed registration",
+                  "uuid": "6e0b939c-02a8-42c2-a0ea-6cd4f18ae0e6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "0aade339-be3e-4c8e-b28b-a8c770495ecc",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "9f487b8d-28bc-4130-b40f-f3c35fc2cd5c"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "52c39eb7-3647-4cc8-a4b1-3f3028a3d84e",
+              "type": "send_msg",
+              "text": "Here's some general instructions. Type:\nHELLO - any time you want to chat.\nBYE - if you ever want to end the chat.\nBACK - if you want to go back to a previous menu.\nREGISTER_YUTE - if you want to restart the registration process.\nCOUNSELLOR - if you want to speak directly to the NFPB counsellor.\n\nThis platform only recognizes text/numbers 🤭, so please don't send emojis, images, videos or voicenotes.\n\nReady to chat? Type HELLO 🙂",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "8cd5f47d-8260-4e54-a5cd-a4cde5f24bbd",
+      "name": "SRH - Wrapper - Registration",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "0ccf4bbb-567f-4d71-ab94-206c5b407b24",
+          "exits": [
+            {
+              "destination_uuid": "617eac69-e71f-4450-be02-742b6955929c",
+              "uuid": "34a4bc7b-e0c4-46b6-a32d-1b4fd3647fd0"
+            },
+            {
+              "destination_uuid": "f85c654d-55fa-4605-a38b-047318b3c395",
+              "uuid": "ebfc0d91-1042-4dfd-b82b-efd28d4967ab"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@contact.groups",
+            "cases": [
+              {
+                "uuid": "493311d1-d3e5-49fc-a487-503394c11ebe",
+                "type": "has_group",
+                "category_uuid": "46c8b54e-ff6d-467f-817d-9f45018ddd4e",
+                "arguments": [
+                  "605be91c-6ab0-4a7a-bc06-99c8934c19e6",
+                  "srh user"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "46c8b54e-ff6d-467f-817d-9f45018ddd4e",
+                "name": "srh user",
+                "exit_uuid": "34a4bc7b-e0c4-46b6-a32d-1b4fd3647fd0"
+              },
+              {
+                "uuid": "14718b92-d497-408a-866d-998d52fad620",
+                "name": "Other",
+                "exit_uuid": "ebfc0d91-1042-4dfd-b82b-efd28d4967ab"
+              }
+            ],
+            "default_category_uuid": "14718b92-d497-408a-866d-998d52fad620",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "617eac69-e71f-4450-be02-742b6955929c",
+          "exits": [
+            {
+              "destination_uuid": "868daa8b-2865-43ec-aa9b-2c4daae1d4de",
+              "uuid": "c0742809-91d6-4259-8960-7e6bb20e6d41"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "27f06e04-f14d-456e-834d-a50b818e1602",
+              "type": "send_msg",
+              "text": "Heads up!! Are you sure you want to start the registration process again? All your info will be deleted.\n\nPlease pick the number for the option you want:\n1. Yes, start from scratch\n2. No, I changed my mind",
+              "attachments": [],
+              "quick_replies": [
+                "1",
+                "2"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "868daa8b-2865-43ec-aa9b-2c4daae1d4de",
+          "exits": [
+            {
+              "destination_uuid": "4ed5478d-e5be-4953-aa24-e7a921860ae5",
+              "uuid": "0ca88e0c-4093-4f63-96c9-52fb2bfd1d6c"
+            },
+            {
+              "destination_uuid": "f0a87810-15ea-4966-ba8b-8099a86e5976",
+              "uuid": "bff7a129-eb29-4441-87d3-dad2429f5272"
+            },
+            {
+              "destination_uuid": "5d753dac-e2b0-4d51-84a0-8893f082aae9",
+              "uuid": "c9ad4c08-dd03-4a67-a110-b93e04b17d82"
+            },
+            {
+              "uuid": "67cd723b-ae4d-4a78-bd55-90dfec0d1f6d",
+              "destination_uuid": "e50c4286-4ed2-4135-9c7d-1c45413df88d"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "a25e2e57-6965-40dc-bd88-e839449be5d6",
+                "type": "has_any_word",
+                "category_uuid": "a5f773c0-973a-49f2-adaa-3c60d8494c22",
+                "arguments": [
+                  "2,"
+                ]
+              },
+              {
+                "uuid": "353bae96-4c00-4927-8a28-2d3c3c46fb31",
+                "type": "has_any_word",
+                "category_uuid": "be50301a-10e0-4f21-b511-8518e348e822",
+                "arguments": [
+                  "1,"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "9af534cd-52d4-4a54-ace1-b8df3cf994af",
+                "category_uuid": "2615aa87-2cef-4d27-859c-d0394e948807"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "a5f773c0-973a-49f2-adaa-3c60d8494c22",
+                "name": "No, I Changed My Mind",
+                "exit_uuid": "0ca88e0c-4093-4f63-96c9-52fb2bfd1d6c"
+              },
+              {
+                "uuid": "be50301a-10e0-4f21-b511-8518e348e822",
+                "name": "Yes, Start From Scratch",
+                "exit_uuid": "bff7a129-eb29-4441-87d3-dad2429f5272"
+              },
+              {
+                "uuid": "115ae7b8-6862-497c-a919-a372639a05a9",
+                "name": "Other",
+                "exit_uuid": "c9ad4c08-dd03-4a67-a110-b93e04b17d82"
+              },
+              {
+                "uuid": "2615aa87-2cef-4d27-859c-d0394e948807",
+                "name": "Safeguarding",
+                "exit_uuid": "67cd723b-ae4d-4a78-bd55-90dfec0d1f6d"
+              }
+            ],
+            "default_category_uuid": "115ae7b8-6862-497c-a919-a372639a05a9",
+            "wait": {
+              "type": "msg"
+            }
+          }
+        },
+        {
+          "uuid": "4ed5478d-e5be-4953-aa24-e7a921860ae5",
+          "exits": [
+            {
+              "destination_uuid": "2c57c7b7-f73f-4848-9503-f8493813cfd2",
+              "uuid": "b81f0376-f57d-4f5b-9677-d965662d793b"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "2dab17cc-5c06-4688-8d15-57c80bf317ca",
+              "type": "send_msg",
+              "text": "Alright.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "2c57c7b7-f73f-4848-9503-f8493813cfd2",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "d5889dda-bee0-4807-a092-1f59fff88167"
+            }
+          ],
+          "actions": [
+            {
+              "type": "set_run_result",
+              "name": "proceed",
+              "value": "yes",
+              "uuid": "3c011bf9-1970-4ad8-9b16-6a3583dfd6a7"
+            }
+          ]
+        },
+        {
+          "uuid": "5d753dac-e2b0-4d51-84a0-8893f082aae9",
+          "exits": [
+            {
+              "destination_uuid": "617eac69-e71f-4450-be02-742b6955929c",
+              "uuid": "9e70e830-6389-4d5e-a516-f4d33e101d56"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "72738f43-e624-4968-a268-f4c8b6229fbb",
+              "type": "send_msg",
+              "text": "Sorry, I don't understand what you mean.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "f0a87810-15ea-4966-ba8b-8099a86e5976",
+          "exits": [
+            {
+              "destination_uuid": "13fbd9df-e1ee-4021-ba38-d3b5cd4064af",
+              "uuid": "9a93853f-959d-4ac8-95d9-d030634dc31f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "e805f3ac-40ae-4390-be09-e2328ff75ad1",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_gender",
+                "name": "prev gender"
+              },
+              "value": "@(fields.prev_gender & \"|\" & fields.gender)"
+            }
+          ]
+        },
+        {
+          "uuid": "13fbd9df-e1ee-4021-ba38-d3b5cd4064af",
+          "exits": [
+            {
+              "destination_uuid": "12543549-0df6-4708-8282-7dca7160958e",
+              "uuid": "dde27bb8-8a07-4889-b5e8-5732c2d0e11d"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "9a0392c3-ad64-4033-8871-58fd2420325a",
+              "type": "set_contact_field",
+              "field": {
+                "key": "gender",
+                "name": "gender"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "12543549-0df6-4708-8282-7dca7160958e",
+          "exits": [
+            {
+              "destination_uuid": "94301aba-ca6c-4bf0-96b5-307cb23f73a1",
+              "uuid": "e8dc2959-9eca-4408-b12e-136a9142afef"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "7fa09a17-db3f-405a-804f-98bab970ed4d",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_age_range",
+                "name": "prev age range"
+              },
+              "value": "@(fields.prev_age_range & \"|\" & fields.age_range)"
+            }
+          ]
+        },
+        {
+          "uuid": "94301aba-ca6c-4bf0-96b5-307cb23f73a1",
+          "exits": [
+            {
+              "destination_uuid": "875e024d-b3fb-479d-9c3c-941ffaae9ebe",
+              "uuid": "0c25a3a0-0c96-456b-96da-e0410cc853ee"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "1826ff0c-b0b8-4765-acfd-5e4558205a5c",
+              "type": "set_contact_field",
+              "field": {
+                "key": "age_range",
+                "name": "age range"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "875e024d-b3fb-479d-9c3c-941ffaae9ebe",
+          "exits": [
+            {
+              "destination_uuid": "02777ff9-2387-4f9d-a4d1-265a1a2f7070",
+              "uuid": "b3dc4af7-f411-407e-842e-1d7718d95672"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "13f93151-c0e8-47ca-bd83-66b19ae40bae",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_region",
+                "name": "prev region"
+              },
+              "value": "@(fields.prev_region & \"|\" & fields.region)"
+            }
+          ]
+        },
+        {
+          "uuid": "02777ff9-2387-4f9d-a4d1-265a1a2f7070",
+          "exits": [
+            {
+              "destination_uuid": "9567ec1c-afeb-4951-ad7e-95afbc302c4b",
+              "uuid": "681df699-f763-4efe-a8d6-bd55a263582a"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "fbfc7525-879e-4fc3-b193-f903785f088c",
+              "type": "set_contact_field",
+              "field": {
+                "key": "region",
+                "name": "region"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "9567ec1c-afeb-4951-ad7e-95afbc302c4b",
+          "exits": [
+            {
+              "destination_uuid": "baf92f16-1f18-4155-b788-f4e72a2a7ffb",
+              "uuid": "3d894434-bf25-4ee3-902b-8bdd0ecc8b1b"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "6d1f7ee4-b4b3-47c4-956a-c0c5f295ef96",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_nickname",
+                "name": "prev nickname"
+              },
+              "value": "@(fields.prev_nickname & \"|\" & fields.srh_nickname)"
+            }
+          ]
+        },
+        {
+          "uuid": "baf92f16-1f18-4155-b788-f4e72a2a7ffb",
+          "exits": [
+            {
+              "destination_uuid": "c459fe62-ba50-43b4-817d-167ebc42df26",
+              "uuid": "ef22e431-2675-45ea-8288-084a0c740683"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "95e93156-d57c-4b8e-abc6-31958d06153f",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_nickname",
+                "name": "srh nickname"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "c459fe62-ba50-43b4-817d-167ebc42df26",
+          "exits": [
+            {
+              "destination_uuid": "c981f9ea-5601-4b18-b9ef-8388210206ba",
+              "uuid": "a212fa1f-7081-4503-8540-0dc52de72504"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "4efbf1eb-3128-4321-9cc7-d928cbe34590",
+              "type": "set_contact_field",
+              "field": {
+                "key": "has_srh_nickname",
+                "name": "has srh nickname"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "c981f9ea-5601-4b18-b9ef-8388210206ba",
+          "exits": [
+            {
+              "destination_uuid": "3ad748c3-ebad-48f5-8bc1-99254e076dc0",
+              "uuid": "4916e73f-9977-43e2-8275-e87fabaacdd9"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "f67f5886-3add-4959-878d-b12460094b40",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_avatar",
+                "name": "prev avatar"
+              },
+              "value": "@(fields.prev_avatar & \"|\" & fields.avatar)"
+            }
+          ]
+        },
+        {
+          "uuid": "3ad748c3-ebad-48f5-8bc1-99254e076dc0",
+          "exits": [
+            {
+              "destination_uuid": "f85c654d-55fa-4605-a38b-047318b3c395",
+              "uuid": "bc7f2724-5259-492f-9923-b21e346ed0b7"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "8050a11d-4eea-4e38-bd11-4b3ae3668cc2",
+              "type": "set_contact_field",
+              "field": {
+                "key": "avatar",
+                "name": "avatar"
+              },
+              "value": ""
+            }
+          ]
+        },
+        {
+          "uuid": "f85c654d-55fa-4605-a38b-047318b3c395",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "e89a813b-8163-4921-942e-df97f1c5aa22"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "a3f0a437-5e9d-4dd3-9a00-05a00f5f26e1"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "4b35f7ac-9c5b-4992-a550-1b62998f29f4",
+              "flow": {
+                "name": "SRH - Registration",
+                "uuid": "5f565cc0-a653-4cc1-a650-077f091d13e7"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "e7cff41d-0b0d-4681-aa40-a98994b1c3a2",
+                "type": "has_only_text",
+                "category_uuid": "e9552699-b962-4291-94d1-6365f09dd4e3",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "a44e9c04-9d04-49f5-87d2-720a390787ec",
+                "type": "has_only_text",
+                "category_uuid": "cf598e5f-8a15-45bf-a76d-b45c77e76769",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "e9552699-b962-4291-94d1-6365f09dd4e3",
+                "name": "Complete",
+                "exit_uuid": "e89a813b-8163-4921-942e-df97f1c5aa22"
+              },
+              {
+                "uuid": "cf598e5f-8a15-45bf-a76d-b45c77e76769",
+                "name": "Expired",
+                "exit_uuid": "a3f0a437-5e9d-4dd3-9a00-05a00f5f26e1"
+              }
+            ],
+            "default_category_uuid": "cf598e5f-8a15-45bf-a76d-b45c77e76769"
+          }
+        },
+        {
+          "uuid": "e50c4286-4ed2-4135-9c7d-1c45413df88d",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "c045fff7-2b94-4092-99fa-b9041dff3c44"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "8d4ff14f-9340-42e1-ae89-8e05d2298757",
+              "destination_uuid": "5eefbdee-88b0-4dd5-88d7-8b72cabef447"
+            },
+            {
+              "uuid": "e7dc261a-2044-475d-8b19-c7433c61f5ec",
+              "destination_uuid": "5eefbdee-88b0-4dd5-88d7-8b72cabef447"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "4005ffba-7b76-4f01-8be4-4db49fb08692",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "470018f8-3584-4883-8aa8-ade6dd2f9f42"
+              },
+              {
+                "uuid": "73cf32ad-a673-410a-9029-e46fec08404f",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "1b6ae830-61ad-4443-9ebc-f18bdedeb9da"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "470018f8-3584-4883-8aa8-ade6dd2f9f42",
+                "name": "Complete",
+                "exit_uuid": "8d4ff14f-9340-42e1-ae89-8e05d2298757"
+              },
+              {
+                "uuid": "1b6ae830-61ad-4443-9ebc-f18bdedeb9da",
+                "name": "Expired",
+                "exit_uuid": "e7dc261a-2044-475d-8b19-c7433c61f5ec"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "1b6ae830-61ad-4443-9ebc-f18bdedeb9da"
+          }
+        },
+        {
+          "uuid": "5eefbdee-88b0-4dd5-88d7-8b72cabef447",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "78b98689-4de2-48fc-b719-e11eee38a8a7"
+            },
+            {
+              "destination_uuid": "617eac69-e71f-4450-be02-742b6955929c",
+              "uuid": "a831fdaa-3485-4b24-a96d-5f908f2fd9ad"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "1218ee19-7d97-45b9-82b0-bcc27a90d044",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "f16c746a-fb64-4080-8297-a41224c59170"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "8ea85858-ca43-4756-a0cd-48f8772150bd",
+                "name": "Other",
+                "exit_uuid": "78b98689-4de2-48fc-b719-e11eee38a8a7"
+              },
+              {
+                "uuid": "f16c746a-fb64-4080-8297-a41224c59170",
+                "name": "Yes",
+                "exit_uuid": "a831fdaa-3485-4b24-a96d-5f908f2fd9ad"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "8ea85858-ca43-4756-a0cd-48f8772150bd"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "6a098eb7-6fe4-4e47-a31a-307c18d31fad",
+      "name": "SRH - Registration - Age",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "4931b196-e98f-444c-bc39-ea754fc53e03",
+          "exits": [
+            {
+              "destination_uuid": "6cb3f8a1-cad3-4882-a6cc-9c772ab35f52",
+              "uuid": "f46e0ab8-8670-425d-be5b-714ae282b1d2"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "080d94f4-8a82-4aa5-87d4-f6378035031f",
+              "type": "send_msg",
+              "text": "How old are you?\n\nPlease pick the number for the option you want:\n1. Under 13\n2. 13 to 15\n3. 16 to 18\n4. 19 to 24\n5. 25 and over",
+              "attachments": [],
+              "quick_replies": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "6cb3f8a1-cad3-4882-a6cc-9c772ab35f52",
+          "exits": [
+            {
+              "destination_uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+              "uuid": "979606bf-7c84-4113-9026-d48496a7f0fe"
+            },
+            {
+              "destination_uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+              "uuid": "aa97c20d-f477-42ec-aa9a-7bd14bedfa01"
+            },
+            {
+              "destination_uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+              "uuid": "19216076-6931-496a-a865-8eaba5b9e815"
+            },
+            {
+              "destination_uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+              "uuid": "dbd368d6-7977-4522-bd8e-f18cd925f379"
+            },
+            {
+              "destination_uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+              "uuid": "a2318722-c944-4931-8a67-c9505efbc545"
+            },
+            {
+              "destination_uuid": "162e044b-96c1-474f-bb92-24f4ed69977d",
+              "uuid": "048af122-ad07-4507-9a5e-e5cfa74ccd17"
+            },
+            {
+              "uuid": "fbe057bc-82a8-496b-9d14-94c3bec77fe3",
+              "destination_uuid": "d1363fde-cc64-41fd-9127-a84875e246d0"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "29fc2e63-17f9-4997-a706-aadbbfcc2353",
+                "type": "has_any_word",
+                "category_uuid": "499bc3a1-d25e-4ab4-ad71-40ad1e599254",
+                "arguments": [
+                  "1,"
+                ]
+              },
+              {
+                "uuid": "187af06c-dc1b-4a46-baf5-11d482bb1e1a",
+                "type": "has_any_word",
+                "category_uuid": "5e3b395e-6529-4757-90e1-45f51aa6980b",
+                "arguments": [
+                  "2,"
+                ]
+              },
+              {
+                "uuid": "d0bbf422-0eef-4eda-9564-eb6331e0699d",
+                "type": "has_any_word",
+                "category_uuid": "d3cd1d83-0490-4801-9307-b128ac0d32fb",
+                "arguments": [
+                  "3,"
+                ]
+              },
+              {
+                "uuid": "3e25a768-9785-4a61-b6c7-e1c5e87ba016",
+                "type": "has_any_word",
+                "category_uuid": "7a454ace-fc75-466e-be48-99db8b9f4229",
+                "arguments": [
+                  "4,"
+                ]
+              },
+              {
+                "uuid": "3425cd0b-e1a2-4552-ba23-03f912c65da3",
+                "type": "has_any_word",
+                "category_uuid": "4445ed39-7df5-4f50-b072-639a550d13a7",
+                "arguments": [
+                  "5,"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "f645bac8-8a8b-428c-94d0-d8cbcb318009",
+                "category_uuid": "bb9440d5-4a4b-4f42-b0cb-7020aae579b6"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "499bc3a1-d25e-4ab4-ad71-40ad1e599254",
+                "name": "Under 13",
+                "exit_uuid": "979606bf-7c84-4113-9026-d48496a7f0fe"
+              },
+              {
+                "uuid": "5e3b395e-6529-4757-90e1-45f51aa6980b",
+                "name": "13 to 15",
+                "exit_uuid": "aa97c20d-f477-42ec-aa9a-7bd14bedfa01"
+              },
+              {
+                "uuid": "d3cd1d83-0490-4801-9307-b128ac0d32fb",
+                "name": "16 to 18",
+                "exit_uuid": "19216076-6931-496a-a865-8eaba5b9e815"
+              },
+              {
+                "uuid": "7a454ace-fc75-466e-be48-99db8b9f4229",
+                "name": "19 to 24",
+                "exit_uuid": "dbd368d6-7977-4522-bd8e-f18cd925f379"
+              },
+              {
+                "uuid": "4445ed39-7df5-4f50-b072-639a550d13a7",
+                "name": "25 and over",
+                "exit_uuid": "a2318722-c944-4931-8a67-c9505efbc545"
+              },
+              {
+                "uuid": "45db7c24-cfe5-4f93-971e-99f0af4c4c78",
+                "name": "Other",
+                "exit_uuid": "048af122-ad07-4507-9a5e-e5cfa74ccd17"
+              },
+              {
+                "uuid": "bb9440d5-4a4b-4f42-b0cb-7020aae579b6",
+                "name": "Safeguarding",
+                "exit_uuid": "fbe057bc-82a8-496b-9d14-94c3bec77fe3"
+              }
+            ],
+            "default_category_uuid": "45db7c24-cfe5-4f93-971e-99f0af4c4c78",
+            "wait": {
+              "type": "msg"
+            },
+            "result_name": "age range"
+          }
+        },
+        {
+          "uuid": "00175d73-98f5-487c-853c-ac6c42527a69",
+          "exits": [
+            {
+              "destination_uuid": "171b4b98-58f8-4648-8776-6b609a55c0ef",
+              "uuid": "2cd54f74-6066-4adb-8938-e14a62ddcbd9"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "6c0616b6-0015-4841-a225-11b7f59ae534",
+              "type": "set_contact_field",
+              "field": {
+                "key": "age_range",
+                "name": "age range"
+              },
+              "value": "@results.age_range.category"
+            }
+          ]
+        },
+        {
+          "uuid": "162e044b-96c1-474f-bb92-24f4ed69977d",
+          "exits": [
+            {
+              "destination_uuid": "4931b196-e98f-444c-bc39-ea754fc53e03",
+              "uuid": "c44f82ef-d0db-414c-aed2-a8549731b621"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "ec93af1e-5f37-47f1-a093-66e984be9cb5",
+              "type": "send_msg",
+              "text": "Sorry, I don't understand what you mean",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "171b4b98-58f8-4648-8776-6b609a55c0ef",
+          "exits": [
+            {
+              "destination_uuid": "c0a01b4a-0bda-42c9-a105-4f2461298d9b",
+              "uuid": "d2e4fb0d-9ea7-4325-9b7d-ee4460d45999"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "79192b08-5fd8-49b9-a2c9-8bf866587e19",
+              "type": "send_msg",
+              "text": "Thanks!",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "c0a01b4a-0bda-42c9-a105-4f2461298d9b",
+          "exits": [
+            {
+              "destination_uuid": "f2b58fb6-512b-4fb7-9e6e-c837d7c73703",
+              "uuid": "7061b9b6-2207-4d00-9db1-c6e8b9c6a951"
+            },
+            {
+              "destination_uuid": "f2b58fb6-512b-4fb7-9e6e-c837d7c73703",
+              "uuid": "c866ff76-c4fd-4059-b749-57b7f2850165"
+            },
+            {
+              "destination_uuid": "f2b58fb6-512b-4fb7-9e6e-c837d7c73703",
+              "uuid": "9e8c48b2-5480-420c-a5d2-4441ede20450"
+            },
+            {
+              "destination_uuid": "a680f587-12d2-4bb5-9dd1-ff8f4fdf86e1",
+              "uuid": "61fe85a1-81f0-4707-bf64-bbb230f83bf8"
+            },
+            {
+              "destination_uuid": "a680f587-12d2-4bb5-9dd1-ff8f4fdf86e1",
+              "uuid": "2edc2e50-8942-4edb-b483-d4438a9df6ec"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "dc5b8677-03e9-44a3-bb2e-574763af1157"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.age_range",
+            "cases": [
+              {
+                "uuid": "5a1d95ef-ef2c-4e48-b704-c8b11158c995",
+                "type": "has_only_phrase",
+                "category_uuid": "0b320061-5b13-4d3a-889c-6f8ed1444f4a",
+                "arguments": [
+                  "Under 13"
+                ]
+              },
+              {
+                "uuid": "10653c35-27f2-43b3-89b9-c32b35deae24",
+                "type": "has_only_phrase",
+                "category_uuid": "da279a48-9ce9-4dda-83e9-addb30a094e7",
+                "arguments": [
+                  "13 to 15"
+                ]
+              },
+              {
+                "uuid": "07b329dc-7da4-4d86-bb99-11bbc0d38c38",
+                "type": "has_only_phrase",
+                "category_uuid": "093736e5-be59-4157-9b3d-c16b7d3ea03f",
+                "arguments": [
+                  "16 to 18"
+                ]
+              },
+              {
+                "uuid": "4b7c0daf-3f7a-4e2f-9f4e-334409590d90",
+                "type": "has_only_phrase",
+                "category_uuid": "9dee63fa-b40b-4673-873d-7d5f528e3615",
+                "arguments": [
+                  "19 to 24"
+                ]
+              },
+              {
+                "uuid": "b3c2ab6d-d076-4c0c-b601-4609d18e3c69",
+                "type": "has_only_phrase",
+                "category_uuid": "358d0935-fddb-48ba-a990-24f5c2349006",
+                "arguments": [
+                  "25 and over"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "0b320061-5b13-4d3a-889c-6f8ed1444f4a",
+                "name": "Under 13",
+                "exit_uuid": "7061b9b6-2207-4d00-9db1-c6e8b9c6a951"
+              },
+              {
+                "uuid": "da279a48-9ce9-4dda-83e9-addb30a094e7",
+                "name": "13 To 15",
+                "exit_uuid": "c866ff76-c4fd-4059-b749-57b7f2850165"
+              },
+              {
+                "uuid": "093736e5-be59-4157-9b3d-c16b7d3ea03f",
+                "name": "16 To 18",
+                "exit_uuid": "9e8c48b2-5480-420c-a5d2-4441ede20450"
+              },
+              {
+                "uuid": "9dee63fa-b40b-4673-873d-7d5f528e3615",
+                "name": "19 To 24",
+                "exit_uuid": "61fe85a1-81f0-4707-bf64-bbb230f83bf8"
+              },
+              {
+                "uuid": "358d0935-fddb-48ba-a990-24f5c2349006",
+                "name": "25 And Over",
+                "exit_uuid": "2edc2e50-8942-4edb-b483-d4438a9df6ec"
+              },
+              {
+                "uuid": "bef5a968-caa1-4b52-b613-e3be3b0d163e",
+                "name": "Other",
+                "exit_uuid": "dc5b8677-03e9-44a3-bb2e-574763af1157"
+              }
+            ],
+            "default_category_uuid": "bef5a968-caa1-4b52-b613-e3be3b0d163e",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "f2b58fb6-512b-4fb7-9e6e-c837d7c73703",
+          "exits": [
+            {
+              "destination_uuid": "0439f1a1-d2ea-4688-8c6d-ec73fc8ea818",
+              "uuid": "1787534c-7640-4ecd-a8cd-8fefc4a4a7a2"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "2ad7f9f7-e724-4144-9c73-9870b3ab3e47",
+              "type": "set_contact_field",
+              "field": {
+                "key": "age_group",
+                "name": "age group"
+              },
+              "value": "young"
+            }
+          ]
+        },
+        {
+          "uuid": "a680f587-12d2-4bb5-9dd1-ff8f4fdf86e1",
+          "exits": [
+            {
+              "destination_uuid": "0439f1a1-d2ea-4688-8c6d-ec73fc8ea818",
+              "uuid": "a2b69d5b-717c-490c-810f-2ae8347366c4"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "dc827a5c-e061-4fd6-af17-731f140b34cf",
+              "type": "set_contact_field",
+              "field": {
+                "key": "age_group",
+                "name": "age group"
+              },
+              "value": "old"
+            }
+          ]
+        },
+        {
+          "uuid": "0439f1a1-d2ea-4688-8c6d-ec73fc8ea818",
+          "exits": [
+            {
+              "destination_uuid": "a229ff56-fbc6-4895-aa54-2762edbd1f67",
+              "uuid": "25b63298-76f1-4a58-9ea3-88cd4a56ef9d"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "58354581-60bf-4330-a565-dd3c2540c130"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.age_range",
+            "cases": [
+              {
+                "uuid": "f7536434-d3ae-4cd9-93eb-0451cf9e2812",
+                "type": "has_only_phrase",
+                "category_uuid": "8512a28e-3399-4eab-b462-6aef668c39ec",
+                "arguments": [
+                  "25 and over"
+                ]
+              },
+              {
+                "uuid": "7d82c187-f492-4203-b3a1-cf504fa1fd36",
+                "type": "has_only_phrase",
+                "category_uuid": "8512a28e-3399-4eab-b462-6aef668c39ec",
+                "arguments": [
+                  "Under 13"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "8512a28e-3399-4eab-b462-6aef668c39ec",
+                "name": "out of target",
+                "exit_uuid": "25b63298-76f1-4a58-9ea3-88cd4a56ef9d"
+              },
+              {
+                "uuid": "e2f6a304-8e34-49fb-9cc6-e4a1abfdac42",
+                "name": "Other",
+                "exit_uuid": "58354581-60bf-4330-a565-dd3c2540c130"
+              }
+            ],
+            "default_category_uuid": "e2f6a304-8e34-49fb-9cc6-e4a1abfdac42",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "a229ff56-fbc6-4895-aa54-2762edbd1f67",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "73600799-12d6-4101-ba47-f4cddd1445fc"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "bb9bca09-7fa1-40a2-84c4-94b3136a3ecb",
+              "type": "send_msg",
+              "text": "Just to let you know, this chatbot is aimed for adolescents between 13 to 24. But of course, you’re still welcome 👋.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "d1363fde-cc64-41fd-9127-a84875e246d0",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "061b1d3b-f231-4d44-9b78-65b31812e1a9"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "ccaa1dae-d002-4166-b085-eca3e85965df",
+              "destination_uuid": "b20ee34d-145c-4f00-b130-8569e332c273"
+            },
+            {
+              "uuid": "145e616a-201a-4a7c-8b4b-d86e5f99feb6",
+              "destination_uuid": "b20ee34d-145c-4f00-b130-8569e332c273"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "165ce5a2-6fe4-4ba8-967f-8ef9cd8ae65d",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "8e114c55-c01d-42ef-9128-1857088c010a"
+              },
+              {
+                "uuid": "e184121a-65b9-476a-bdd9-b14de20d48d0",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "68b6d732-accc-45c6-a47b-055c57682ba0"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "8e114c55-c01d-42ef-9128-1857088c010a",
+                "name": "Complete",
+                "exit_uuid": "ccaa1dae-d002-4166-b085-eca3e85965df"
+              },
+              {
+                "uuid": "68b6d732-accc-45c6-a47b-055c57682ba0",
+                "name": "Expired",
+                "exit_uuid": "145e616a-201a-4a7c-8b4b-d86e5f99feb6"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "68b6d732-accc-45c6-a47b-055c57682ba0"
+          }
+        },
+        {
+          "uuid": "b20ee34d-145c-4f00-b130-8569e332c273",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "30c35bcf-d317-4e87-8d51-23c88c8ae806"
+            },
+            {
+              "destination_uuid": "4931b196-e98f-444c-bc39-ea754fc53e03",
+              "uuid": "57674941-8620-46ec-ab80-29ae1a0730eb"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "47f65364-0435-4c99-8579-aa13949d603e",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "3f04c07e-af06-430a-a96b-0d14b69790b8"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "1c47b377-d51f-42cb-97ce-c139ec8f3d12",
+                "name": "Other",
+                "exit_uuid": "30c35bcf-d317-4e87-8d51-23c88c8ae806"
+              },
+              {
+                "uuid": "3f04c07e-af06-430a-a96b-0d14b69790b8",
+                "name": "Yes",
+                "exit_uuid": "57674941-8620-46ec-ab80-29ae1a0730eb"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "1c47b377-d51f-42cb-97ce-c139ec8f3d12"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "94c7b27f-f86b-4850-b066-be32f674b1c7",
+      "name": "SRH - Registration - Gender",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "83b7a820-7dbc-405f-bb6d-2ebfe72c024b",
+          "exits": [
+            {
+              "destination_uuid": "2d7f9dc2-6751-479b-a3cd-8b766f36a4ec",
+              "uuid": "9bfbe70a-2154-4b06-9100-bffb85862742"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "71eaff03-af5a-405b-8b67-c06f69b99bea",
+              "type": "send_msg",
+              "text": "Could you tell me the sex you were assigned at birth?\n\nPlease pick the number for the option you want:\n1. Male\n2. Female\n3. Other\n4. Do not want to say",
+              "attachments": [],
+              "quick_replies": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "2d7f9dc2-6751-479b-a3cd-8b766f36a4ec",
+          "exits": [
+            {
+              "destination_uuid": "ac6aa265-44ab-4528-a95d-5fa1dc1cbb18",
+              "uuid": "2648336d-51c0-4d77-9abd-143bbbc168ec"
+            },
+            {
+              "destination_uuid": "ac6aa265-44ab-4528-a95d-5fa1dc1cbb18",
+              "uuid": "75dcf55d-8d54-4383-86cb-8f5ff4500127"
+            },
+            {
+              "destination_uuid": "ac6aa265-44ab-4528-a95d-5fa1dc1cbb18",
+              "uuid": "b286923e-57ed-4af2-9933-09743841dd79"
+            },
+            {
+              "destination_uuid": "ac6aa265-44ab-4528-a95d-5fa1dc1cbb18",
+              "uuid": "cd2b50d6-9165-450d-a631-6368855b34cf"
+            },
+            {
+              "destination_uuid": "4dfc0720-3767-40ad-804b-40f5b6924d30",
+              "uuid": "a93683ce-0676-49ea-9b46-6134eeba5d83"
+            },
+            {
+              "uuid": "5ae14b3f-f3f2-4ba4-8d36-b5ad0a168f27",
+              "destination_uuid": "4b3b04fd-1505-4333-8596-4bc37e79cdfb"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "f116fd3a-1201-4e77-95ce-73868a158a34",
+                "type": "has_any_word",
+                "category_uuid": "9535ee5f-ac12-415b-9721-605d12d8234b",
+                "arguments": [
+                  "1,"
+                ]
+              },
+              {
+                "uuid": "b138ad60-3a1d-4831-b441-5497389dc78e",
+                "type": "has_any_word",
+                "category_uuid": "5c3cee7b-46de-4aa1-8364-2edba43ea08c",
+                "arguments": [
+                  "2,"
+                ]
+              },
+              {
+                "uuid": "ae1a5eae-1c3c-46ad-baaa-b62797622b07",
+                "type": "has_any_word",
+                "category_uuid": "c371b2eb-12c8-4038-a7f5-c5a48eca2be3",
+                "arguments": [
+                  "3,"
+                ]
+              },
+              {
+                "uuid": "0a518ef6-5d74-497a-b9bf-5a23cec2bacc",
+                "type": "has_any_word",
+                "category_uuid": "521676ae-4658-414e-8229-a6dcb89a3aea",
+                "arguments": [
+                  "4,"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "638cf6b5-824f-4b77-bb62-a3d1287ccb4c",
+                "category_uuid": "26e36477-ad2a-4fb4-9a80-8dd2635db44f"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "9535ee5f-ac12-415b-9721-605d12d8234b",
+                "name": "Male",
+                "exit_uuid": "2648336d-51c0-4d77-9abd-143bbbc168ec"
+              },
+              {
+                "uuid": "5c3cee7b-46de-4aa1-8364-2edba43ea08c",
+                "name": "Female",
+                "exit_uuid": "75dcf55d-8d54-4383-86cb-8f5ff4500127"
+              },
+              {
+                "uuid": "c371b2eb-12c8-4038-a7f5-c5a48eca2be3",
+                "name": "Non-binary",
+                "exit_uuid": "b286923e-57ed-4af2-9933-09743841dd79"
+              },
+              {
+                "uuid": "521676ae-4658-414e-8229-a6dcb89a3aea",
+                "name": "no",
+                "exit_uuid": "cd2b50d6-9165-450d-a631-6368855b34cf"
+              },
+              {
+                "uuid": "1bfd313e-5182-47e8-9594-e0bb2bb8de77",
+                "name": "Other",
+                "exit_uuid": "a93683ce-0676-49ea-9b46-6134eeba5d83"
+              },
+              {
+                "uuid": "26e36477-ad2a-4fb4-9a80-8dd2635db44f",
+                "name": "Safeguarding",
+                "exit_uuid": "5ae14b3f-f3f2-4ba4-8d36-b5ad0a168f27"
+              }
+            ],
+            "default_category_uuid": "1bfd313e-5182-47e8-9594-e0bb2bb8de77",
+            "wait": {
+              "type": "msg"
+            },
+            "result_name": "gender"
+          }
+        },
+        {
+          "uuid": "ac6aa265-44ab-4528-a95d-5fa1dc1cbb18",
+          "exits": [
+            {
+              "destination_uuid": "7d8a5f72-bdf3-4a28-87cf-9f8e84072414",
+              "uuid": "4a42f651-6ca2-4d6f-b37f-62455d3c27ca"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "d7b692ac-5191-4ae9-8f81-d0045c36b2cf",
+              "type": "set_contact_field",
+              "field": {
+                "key": "gender",
+                "name": "gender"
+              },
+              "value": "@results.gender.category"
+            }
+          ]
+        },
+        {
+          "uuid": "4dfc0720-3767-40ad-804b-40f5b6924d30",
+          "exits": [
+            {
+              "destination_uuid": "83b7a820-7dbc-405f-bb6d-2ebfe72c024b",
+              "uuid": "f08d153b-1fad-4cfa-be1a-6196d6e02225"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "55c790eb-93da-4d48-940a-20fca6798386",
+              "type": "send_msg",
+              "text": "Sorry, I don't understand what you mean. Please select an option from the menu below.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "7d8a5f72-bdf3-4a28-87cf-9f8e84072414",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "b5bf2dec-09a3-4944-918a-9cbb9d44f3ee"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "efaea9d7-eefb-48fa-899b-150910bcaef6",
+              "type": "send_msg",
+              "text": "Perfect, thanks!",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "4b3b04fd-1505-4333-8596-4bc37e79cdfb",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "810caeb8-af63-4523-9c83-15af0bf9c26b"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "44ed97f2-1fa0-4bce-94c9-2b67169770ad",
+              "destination_uuid": "fedf7217-5775-48da-a83e-ed3e6b5182ec"
+            },
+            {
+              "uuid": "13dd4c6d-6c56-4988-b381-c915f61e104e",
+              "destination_uuid": "fedf7217-5775-48da-a83e-ed3e6b5182ec"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "cf2e67fd-4d0f-4776-bcf7-2f90ce51cec6",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "7f41bc51-10e4-4996-a576-fde739187c49"
+              },
+              {
+                "uuid": "fa4e8988-94e7-4a98-afe0-fbc3e9eaffc7",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "5f8fdb6e-5627-44c3-827f-78c816a99cbd"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "7f41bc51-10e4-4996-a576-fde739187c49",
+                "name": "Complete",
+                "exit_uuid": "44ed97f2-1fa0-4bce-94c9-2b67169770ad"
+              },
+              {
+                "uuid": "5f8fdb6e-5627-44c3-827f-78c816a99cbd",
+                "name": "Expired",
+                "exit_uuid": "13dd4c6d-6c56-4988-b381-c915f61e104e"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "5f8fdb6e-5627-44c3-827f-78c816a99cbd"
+          }
+        },
+        {
+          "uuid": "fedf7217-5775-48da-a83e-ed3e6b5182ec",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "4634eaad-f2a4-4300-bfc1-1acfb64aa7ab"
+            },
+            {
+              "destination_uuid": "83b7a820-7dbc-405f-bb6d-2ebfe72c024b",
+              "uuid": "64e1a6f1-6821-41e9-8e12-3a95a082776d"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "7fb5b426-776b-4edb-b205-e04a5f9949f2",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "a2e145c5-013d-4d23-9628-6cc1d9c4aa31"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "ca63d257-b8be-47c1-9ce9-97cf4b9a4bbc",
+                "name": "Other",
+                "exit_uuid": "4634eaad-f2a4-4300-bfc1-1acfb64aa7ab"
+              },
+              {
+                "uuid": "a2e145c5-013d-4d23-9628-6cc1d9c4aa31",
+                "name": "Yes",
+                "exit_uuid": "64e1a6f1-6821-41e9-8e12-3a95a082776d"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "ca63d257-b8be-47c1-9ce9-97cf4b9a4bbc"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "46caa6be-b017-42fa-8cf7-724eb90d83aa",
+      "name": "SRH - Registration - Parish",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "a0077671-8e53-487b-a8ab-f5fb480d4a2e",
+          "exits": [
+            {
+              "destination_uuid": "c918790e-5347-4a92-b485-9baaf9d53ceb",
+              "uuid": "1cc3a140-d479-4e7c-887e-e6b4dc67f79b"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "645bf20a-f2da-472a-b174-ad009fa0e42b",
+              "type": "send_msg",
+              "text": "What PARISH do you live in? Reply with parish name only, like ST ANDREW or HANOVER.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "c918790e-5347-4a92-b485-9baaf9d53ceb",
+          "exits": [
+            {
+              "destination_uuid": "2231c7e0-d1cd-4e07-8bfc-3ac96fb4de99",
+              "uuid": "2c2400f2-e13d-4b0d-8948-72702889a4da"
+            },
+            {
+              "destination_uuid": "8fabc594-8b99-4430-89e9-0b305589d2b3",
+              "uuid": "41fce47c-bb84-46cc-a31a-f6df87118a95"
+            },
+            {
+              "uuid": "c0874b5b-cd1e-48b9-9c2d-254a365f7b24",
+              "destination_uuid": "d0156dd9-a299-460b-a336-8c612a9a9a19"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "08d6f3e0-572b-47f4-aba1-c209bc99b175",
+                "type": "has_any_word",
+                "category_uuid": "b1cb3624-f0cf-4948-9174-8621212e7b62",
+                "arguments": [
+                  "has_state"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "773aa1ce-7625-4321-994a-160f1d37f381",
+                "category_uuid": "bddcf365-a4f2-4e9e-af83-2d4328d52f75"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "b1cb3624-f0cf-4948-9174-8621212e7b62",
+                "name": "Has_State",
+                "exit_uuid": "2c2400f2-e13d-4b0d-8948-72702889a4da"
+              },
+              {
+                "uuid": "1f052abd-7340-4141-a1bb-6fc39482c0d4",
+                "name": "Other",
+                "exit_uuid": "41fce47c-bb84-46cc-a31a-f6df87118a95"
+              },
+              {
+                "uuid": "bddcf365-a4f2-4e9e-af83-2d4328d52f75",
+                "name": "Safeguarding",
+                "exit_uuid": "c0874b5b-cd1e-48b9-9c2d-254a365f7b24"
+              }
+            ],
+            "default_category_uuid": "1f052abd-7340-4141-a1bb-6fc39482c0d4",
+            "wait": {
+              "type": "msg"
+            },
+            "result_name": "parish"
+          }
+        },
+        {
+          "uuid": "2231c7e0-d1cd-4e07-8bfc-3ac96fb4de99",
+          "exits": [
+            {
+              "destination_uuid": "5b778d42-c547-4e04-b2f0-f6f9571cf53f",
+              "uuid": "1abd0e82-63a0-4808-b0c9-d4ac9095fb91"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "75d0b014-75c0-4e18-8f2f-365f8469fa25",
+              "type": "send_msg",
+              "text": "Thank you!",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "8fabc594-8b99-4430-89e9-0b305589d2b3",
+          "exits": [
+            {
+              "destination_uuid": "c918790e-5347-4a92-b485-9baaf9d53ceb",
+              "uuid": "c8f36a74-1c06-4050-ad2f-3724d1b06b99"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "3c6ea4e7-7a85-49e8-98b0-bfae4d0d9f10",
+              "type": "send_msg",
+              "text": "Sorry, we did not understand your answer. Reply with your PARISH name only e.g. ST ANDREW or HANOVER.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "5b778d42-c547-4e04-b2f0-f6f9571cf53f",
+          "exits": [
+            {
+              "destination_uuid": "b18e6fcb-e024-43b6-9c28-e33f29b709fc",
+              "uuid": "aea2f9ca-9c0e-4b2b-b351-dbeef13de13d"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "4f14ee27-a1b5-475b-8445-4ca1690af682",
+              "type": "set_contact_field",
+              "field": {
+                "key": "region",
+                "name": "Region"
+              },
+              "value": "@results.parish.input"
+            }
+          ]
+        },
+        {
+          "uuid": "b18e6fcb-e024-43b6-9c28-e33f29b709fc",
+          "exits": [
+            {
+              "destination_uuid": "2cabe0ce-8367-409a-b9e5-f2cd0f1bc9ff",
+              "uuid": "066b4981-fb10-4dfa-91c5-0be858132e6f"
+            },
+            {
+              "destination_uuid": "41087fbf-7e09-4194-932a-fdf786e958c6",
+              "uuid": "ae0d07d0-f025-4c43-8a36-4895cb0c96a3"
+            },
+            {
+              "destination_uuid": "c478a51e-2ec1-417e-ad7a-b2fff18361da",
+              "uuid": "bd880f92-7664-412c-a355-28d019da5280"
+            },
+            {
+              "destination_uuid": "45218454-67d2-4b32-b4a0-737de80c4ef7",
+              "uuid": "f6e6b2f5-a653-435f-87fe-36257077e92f"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "0b068508-fa4c-4135-a17f-d25647627fdc"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@fields.region",
+            "cases": [
+              {
+                "uuid": "c989ff9a-51f9-485c-9132-0db20c1eb251",
+                "type": "has_only_phrase",
+                "category_uuid": "172026c6-bf8d-4d1a-af2a-884a71980283",
+                "arguments": [
+                  "Kingston and St. Andrew Corporation"
+                ]
+              },
+              {
+                "uuid": "c7d56e6b-723d-4ef8-90d2-51f1a826afa2",
+                "type": "has_only_phrase",
+                "category_uuid": "172026c6-bf8d-4d1a-af2a-884a71980283",
+                "arguments": [
+                  "Saint Thomas"
+                ]
+              },
+              {
+                "uuid": "70695de5-856a-4899-9c5e-0b8ac189e16e",
+                "type": "has_only_phrase",
+                "category_uuid": "172026c6-bf8d-4d1a-af2a-884a71980283",
+                "arguments": [
+                  "Saint Catherine"
+                ]
+              },
+              {
+                "uuid": "9f43f258-a403-4f7a-b926-50f78ef9b024",
+                "type": "has_only_phrase",
+                "category_uuid": "8b2246e4-9fdf-4b20-897f-328ef61364e1",
+                "arguments": [
+                  "Clarendon"
+                ]
+              },
+              {
+                "uuid": "7820e3eb-ddcb-41c0-bc33-b1fb94c3e114",
+                "type": "has_only_phrase",
+                "category_uuid": "8b2246e4-9fdf-4b20-897f-328ef61364e1",
+                "arguments": [
+                  "Manchester"
+                ]
+              },
+              {
+                "uuid": "aff9e8fb-2cd0-4728-abad-9d77b8ed7c6a",
+                "type": "has_only_phrase",
+                "category_uuid": "8b2246e4-9fdf-4b20-897f-328ef61364e1",
+                "arguments": [
+                  "Saint Elizabeth"
+                ]
+              },
+              {
+                "uuid": "631841d6-05d6-4beb-8775-28c5b52b0b67",
+                "type": "has_only_phrase",
+                "category_uuid": "ee616038-7055-41c4-bf74-f25506547482",
+                "arguments": [
+                  "Westmoreland"
+                ]
+              },
+              {
+                "uuid": "2828a044-9fac-4153-893a-d9009d871056",
+                "type": "has_only_phrase",
+                "category_uuid": "ee616038-7055-41c4-bf74-f25506547482",
+                "arguments": [
+                  "Hanover"
+                ]
+              },
+              {
+                "uuid": "081b02a4-234d-4539-962f-997f20d4cf24",
+                "type": "has_only_phrase",
+                "category_uuid": "ee616038-7055-41c4-bf74-f25506547482",
+                "arguments": [
+                  "Saint James"
+                ]
+              },
+              {
+                "uuid": "e26db4b0-3ae1-45f4-9454-b490d9e44c86",
+                "type": "has_only_phrase",
+                "category_uuid": "ee616038-7055-41c4-bf74-f25506547482",
+                "arguments": [
+                  "Trelawny"
+                ]
+              },
+              {
+                "uuid": "72a76c57-a4fe-4f89-a37f-c0e89c2f3031",
+                "type": "has_only_phrase",
+                "category_uuid": "53984c9d-406e-4f86-98ec-8fc43ea06ffb",
+                "arguments": [
+                  "Saint Ann"
+                ]
+              },
+              {
+                "uuid": "ca6ba681-c8f1-4b66-8ea5-e399ef15031d",
+                "type": "has_only_phrase",
+                "category_uuid": "53984c9d-406e-4f86-98ec-8fc43ea06ffb",
+                "arguments": [
+                  "Saint Mary"
+                ]
+              },
+              {
+                "uuid": "dd368337-e2b6-4a22-b12d-b22a977ce8c0",
+                "type": "has_only_phrase",
+                "category_uuid": "53984c9d-406e-4f86-98ec-8fc43ea06ffb",
+                "arguments": [
+                  "Portland"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "172026c6-bf8d-4d1a-af2a-884a71980283",
+                "name": "South East Region",
+                "exit_uuid": "066b4981-fb10-4dfa-91c5-0be858132e6f"
+              },
+              {
+                "uuid": "8b2246e4-9fdf-4b20-897f-328ef61364e1",
+                "name": "Southern Region",
+                "exit_uuid": "ae0d07d0-f025-4c43-8a36-4895cb0c96a3"
+              },
+              {
+                "uuid": "ee616038-7055-41c4-bf74-f25506547482",
+                "name": "Western Region",
+                "exit_uuid": "bd880f92-7664-412c-a355-28d019da5280"
+              },
+              {
+                "uuid": "53984c9d-406e-4f86-98ec-8fc43ea06ffb",
+                "name": "North East Region",
+                "exit_uuid": "f6e6b2f5-a653-435f-87fe-36257077e92f"
+              },
+              {
+                "uuid": "cf693f48-d686-46a3-b616-43d6355bdd8a",
+                "name": "Other",
+                "exit_uuid": "0b068508-fa4c-4135-a17f-d25647627fdc"
+              }
+            ],
+            "default_category_uuid": "cf693f48-d686-46a3-b616-43d6355bdd8a",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "a7bb772b-56bc-4bd5-8f53-6bafd0610fd3",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "39c84546-b501-49fa-9ca4-14a0c5289edb"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "a76aa511-66c2-4419-b060-874e5d795819",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south_east"
+            }
+          ]
+        },
+        {
+          "uuid": "2a635ca6-8cae-4a19-aacb-93af88073454",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "49e10b53-2835-4cc5-9198-b39ed104c670"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "a0fdcffc-fa7b-46a5-8b69-08caae35c1d1",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south_east"
+            }
+          ]
+        },
+        {
+          "uuid": "2cabe0ce-8367-409a-b9e5-f2cd0f1bc9ff",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "dfa3803e-6858-40b8-a3b0-ca581f60cabc"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "24461b49-b494-4ccd-a4b2-98929d64eb7d",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south_east"
+            }
+          ]
+        },
+        {
+          "uuid": "7c6f1c7e-3764-407d-a337-687687613569",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "89fa3175-7074-4173-8812-51875f000594"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "5ffabddb-4664-4e46-96b3-caf1561d1512",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south"
+            }
+          ]
+        },
+        {
+          "uuid": "34732890-08e5-4001-964b-74869b930838",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "7cee5e74-33e0-4761-a29e-75bd1e73f7ce"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "2f490441-39d1-4e05-b6a3-1e3f9a2bce09",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south"
+            }
+          ]
+        },
+        {
+          "uuid": "41087fbf-7e09-4194-932a-fdf786e958c6",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "5aa8f5c8-4252-4d0b-b287-9c8a789ce468"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "10d35028-cf10-4aaa-b34b-8648ab824886",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "south"
+            }
+          ]
+        },
+        {
+          "uuid": "3481e428-62f1-4226-a991-99a4d1472b54",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "685f6d7f-76fa-47a0-8ae0-164595f531d2"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "77b5d8bc-12a6-4a76-af8b-8b67462c5207",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "west"
+            }
+          ]
+        },
+        {
+          "uuid": "7458aade-cfbf-48ee-87d1-6e7c6d4688c9",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "7089262b-54bb-4e16-8cc0-0ca9c7b3fe73"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "cabf711e-9e79-4b82-8878-e049269c3818",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "west"
+            }
+          ]
+        },
+        {
+          "uuid": "13e55f12-c726-4226-8269-43ed2eed9e85",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "122073cf-9939-4d24-967f-9587cd82835f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "52ce2459-eb4b-46b7-9431-01d0c1e0e4a5",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "west"
+            }
+          ]
+        },
+        {
+          "uuid": "c478a51e-2ec1-417e-ad7a-b2fff18361da",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "218fdd54-a1a6-46ec-9bce-168ec6da2847"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "537ce63c-31d3-4834-9b0d-52d1a609573d",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "west"
+            }
+          ]
+        },
+        {
+          "uuid": "12501c49-b774-4ddd-92f9-3767efa3c9f1",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "280a83e0-cfde-478f-9581-efbaca2dde88"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "e09d115c-6230-47f3-b318-1f7289bf84a4",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "north_east"
+            }
+          ]
+        },
+        {
+          "uuid": "481c9971-b019-4e7b-a5bb-b45ea8bb6eaa",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "4d270501-8247-4e8b-9be2-9796932f364c"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "acfce5d0-4bd8-4197-8d1f-af7209e655c6",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "north_east"
+            }
+          ]
+        },
+        {
+          "uuid": "45218454-67d2-4b32-b4a0-737de80c4ef7",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "e260abe5-0155-4f1c-bc48-7d48d52fc662"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "0cccfbd0-f1d0-42b5-b8b8-5e96eb07875f",
+              "type": "set_contact_field",
+              "field": {
+                "key": "jamaica_region",
+                "name": "jamaica region"
+              },
+              "value": "north_east"
+            }
+          ]
+        },
+        {
+          "uuid": "d0156dd9-a299-460b-a336-8c612a9a9a19",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "d299a9cd-7987-4a75-b899-3222cba2cbf6"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "5299f913-a5c2-44eb-9b71-46ed54ffa0b1",
+              "destination_uuid": "e1f27c9d-5791-4d88-8cc8-75c291d7b124"
+            },
+            {
+              "uuid": "cd468c44-48df-4fc6-ad40-a51518ada52a",
+              "destination_uuid": "e1f27c9d-5791-4d88-8cc8-75c291d7b124"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "11369e2c-8626-46c7-8ed6-e6ab31df946f",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "5989309e-fb6c-4e12-aceb-eeb414ccfab1"
+              },
+              {
+                "uuid": "e7593b95-e1e2-44f0-bad2-749d3b4ba8ba",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "f6147131-5c01-4493-b9f5-aaeb56c9135b"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "5989309e-fb6c-4e12-aceb-eeb414ccfab1",
+                "name": "Complete",
+                "exit_uuid": "5299f913-a5c2-44eb-9b71-46ed54ffa0b1"
+              },
+              {
+                "uuid": "f6147131-5c01-4493-b9f5-aaeb56c9135b",
+                "name": "Expired",
+                "exit_uuid": "cd468c44-48df-4fc6-ad40-a51518ada52a"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "f6147131-5c01-4493-b9f5-aaeb56c9135b"
+          }
+        },
+        {
+          "uuid": "e1f27c9d-5791-4d88-8cc8-75c291d7b124",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "b71d3322-5c27-4afe-921b-c378a60a44fb"
+            },
+            {
+              "destination_uuid": "8fabc594-8b99-4430-89e9-0b305589d2b3",
+              "uuid": "b871d868-ef53-4a48-a2e4-36cc4efb2830"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "2ffe3e03-bd1d-4cc9-aa70-949b209df794",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "8e85d1df-19cb-4e1f-9a7f-619760153e00"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "7f150815-b502-49ab-9b69-c19f6199c252",
+                "name": "Other",
+                "exit_uuid": "b71d3322-5c27-4afe-921b-c378a60a44fb"
+              },
+              {
+                "uuid": "8e85d1df-19cb-4e1f-9a7f-619760153e00",
+                "name": "Yes",
+                "exit_uuid": "b871d868-ef53-4a48-a2e4-36cc4efb2830"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "7f150815-b502-49ab-9b69-c19f6199c252"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "af41a3c8-ee2d-46d8-adab-0687e6a12792",
+      "name": "SRH - Registration - Avatar",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "f74bd15e-396e-4326-99e5-bdf176b1de78",
+          "exits": [
+            {
+              "destination_uuid": "1b2ea0b8-f96b-414b-8c66-5f340314b24e",
+              "uuid": "48f0ee9a-1f7a-4cef-ab74-a85fe7e76868"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "3de89183-c7b0-46ed-99ac-5e81041a881a",
+              "type": "send_msg",
+              "text": "Which one of us do you want to talk to?\n\nPlease pick the number for the option you want:\n1. Reynaldo\n2. Rihanna\n3. Kimmy\n4. Sean",
+              "attachments": [
+                "image:@(fields.srh_characters_path & \"crew.jpg\")"
+              ],
+              "quick_replies": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "1b2ea0b8-f96b-414b-8c66-5f340314b24e",
+          "exits": [
+            {
+              "destination_uuid": "a7372921-3fdb-47ad-ba25-f9d945d0a005",
+              "uuid": "84327d64-118e-4f33-b48d-4ead5566ae85"
+            },
+            {
+              "destination_uuid": "13bc9e75-afd8-49a4-bd5c-6821889ec10a",
+              "uuid": "d2bfabcc-99c1-4ad1-9968-bc60a2532c96"
+            },
+            {
+              "destination_uuid": "f1215020-3d22-48a6-9a65-c92b7dad8e96",
+              "uuid": "f2d2b25f-ee5c-419a-9d09-752ce63094b2"
+            },
+            {
+              "destination_uuid": "386f177b-e664-4fed-8cd8-d678b5d7e68a",
+              "uuid": "89b4d15f-dc64-4433-9873-d26863c8d358"
+            },
+            {
+              "destination_uuid": "290300db-ad87-4c72-8792-0b5f1c0d9db3",
+              "uuid": "b40c061a-af00-4c4a-b216-31599222c357"
+            },
+            {
+              "uuid": "13dfee91-891a-4e2c-8bfc-fbcba8f3eb9e",
+              "destination_uuid": "8e823091-d86b-4829-8f68-a7a99345c489"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "1b91845e-0fb7-462e-b833-ec03b431dbbc",
+                "type": "has_any_word",
+                "category_uuid": "79a682a0-0964-4381-bb10-6db8081f560b",
+                "arguments": [
+                  "rihanna,2,"
+                ]
+              },
+              {
+                "uuid": "5ca38bcc-95ad-46e3-88f8-cd72ab22d25b",
+                "type": "has_any_word",
+                "category_uuid": "b3eac8cf-6ca5-4ea9-8ee1-3564fd2f1815",
+                "arguments": [
+                  "sean,4,"
+                ]
+              },
+              {
+                "uuid": "b413a7a8-52e4-4bca-9d79-0ca991f21cfa",
+                "type": "has_any_word",
+                "category_uuid": "5fec3906-a5ac-4ecc-b3a8-b7f76fdba258",
+                "arguments": [
+                  "kimmy,3,"
+                ]
+              },
+              {
+                "uuid": "88b2f8c3-3800-42d2-ba01-0742dd8aba5f",
+                "type": "has_any_word",
+                "category_uuid": "6ae6f4f5-e787-44c4-8d0b-3c6b701f7f10",
+                "arguments": [
+                  "reynaldo,1,"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "16f7783a-8006-4fb6-a183-e411cf686ed5",
+                "category_uuid": "48b05d75-1f60-4001-aa21-5fa7df9c69c1"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "79a682a0-0964-4381-bb10-6db8081f560b",
+                "name": "Riri",
+                "exit_uuid": "84327d64-118e-4f33-b48d-4ead5566ae85"
+              },
+              {
+                "uuid": "b3eac8cf-6ca5-4ea9-8ee1-3564fd2f1815",
+                "name": "Sean",
+                "exit_uuid": "d2bfabcc-99c1-4ad1-9968-bc60a2532c96"
+              },
+              {
+                "uuid": "5fec3906-a5ac-4ecc-b3a8-b7f76fdba258",
+                "name": "Kimmy",
+                "exit_uuid": "f2d2b25f-ee5c-419a-9d09-752ce63094b2"
+              },
+              {
+                "uuid": "6ae6f4f5-e787-44c4-8d0b-3c6b701f7f10",
+                "name": "Reynaldo",
+                "exit_uuid": "89b4d15f-dc64-4433-9873-d26863c8d358"
+              },
+              {
+                "uuid": "afe2da72-c7d4-4e6d-bd5d-d4377aa2d020",
+                "name": "Other",
+                "exit_uuid": "b40c061a-af00-4c4a-b216-31599222c357"
+              },
+              {
+                "uuid": "48b05d75-1f60-4001-aa21-5fa7df9c69c1",
+                "name": "Safeguarding",
+                "exit_uuid": "13dfee91-891a-4e2c-8bfc-fbcba8f3eb9e"
+              }
+            ],
+            "default_category_uuid": "afe2da72-c7d4-4e6d-bd5d-d4377aa2d020",
+            "wait": {
+              "type": "msg"
+            },
+            "result_name": "avatar"
+          }
+        },
+        {
+          "uuid": "a7372921-3fdb-47ad-ba25-f9d945d0a005",
+          "exits": [
+            {
+              "destination_uuid": "99b09473-c3d1-431d-9991-800bb883b1bb",
+              "uuid": "c711780c-8f66-4994-b433-7761515747bf"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "82baaf35-3d77-45c9-9a64-d7fbc550dc97",
+              "type": "send_msg",
+              "text": "Hey, I’m Rihanna, or you can call me Riri. I can help with all your sexual and reproductive health questions.",
+              "attachments": [
+                "image:@(fields.srh_characters_path & \"Riri.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "13bc9e75-afd8-49a4-bd5c-6821889ec10a",
+          "exits": [
+            {
+              "destination_uuid": "99b09473-c3d1-431d-9991-800bb883b1bb",
+              "uuid": "dd0ee4dc-2748-4fa5-b0e8-377b1b43c9ec"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "e504c943-98d3-4347-a36f-6bfe85b92eb3",
+              "type": "send_msg",
+              "text": "Wah gwan, I’m Sean. We can chat anytime yuh ready. ",
+              "attachments": [
+                "image:@(fields.srh_characters_path & \"Sean.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "f1215020-3d22-48a6-9a65-c92b7dad8e96",
+          "exits": [
+            {
+              "destination_uuid": "99b09473-c3d1-431d-9991-800bb883b1bb",
+              "uuid": "865a2fbb-dd2d-4754-ab64-733217adbcb2"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "42aa8ad8-682d-4292-8727-dca4b8441be2",
+              "type": "send_msg",
+              "text": "Hii! I'm Kimmy! Let me help you get di facts on sexual and reproductive health.",
+              "attachments": [
+                "image:@(fields.srh_characters_path & \"Kimmy.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "386f177b-e664-4fed-8cd8-d678b5d7e68a",
+          "exits": [
+            {
+              "destination_uuid": "99b09473-c3d1-431d-9991-800bb883b1bb",
+              "uuid": "87275329-1a61-4758-bbd9-e2b20d12682d"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "870e515a-4a78-4e15-b352-fccb143d2c5f",
+              "type": "send_msg",
+              "text": "Wah gwan, it's Reynaldo. I know all about sexual and reproducitve health. So, you can ask me anything!",
+              "attachments": [
+                "image:@(fields.srh_characters_path & \"Reynaldo.jpg\")"
+              ],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "290300db-ad87-4c72-8792-0b5f1c0d9db3",
+          "exits": [
+            {
+              "destination_uuid": "f74bd15e-396e-4326-99e5-bdf176b1de78",
+              "uuid": "1580afca-2d4f-475b-a3b4-730ee6d2cc2b"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "ca354c3d-16f1-4aba-9401-e9414a044496",
+              "type": "send_msg",
+              "text": "Sorry, I don't understand what you mean.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "99b09473-c3d1-431d-9991-800bb883b1bb",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "0ca93448-3d07-426c-84c2-6b82dcee20dc"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "c4900f7d-d196-48e9-a212-5c78756ec021",
+              "type": "set_contact_field",
+              "field": {
+                "key": "avatar",
+                "name": "avatar"
+              },
+              "value": "@results.avatar.category"
+            }
+          ]
+        },
+        {
+          "uuid": "8e823091-d86b-4829-8f68-a7a99345c489",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "e9747e9e-bf8f-4831-b35d-63297af5ec69"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "38eda920-9490-4f1a-b63f-2a9c985aceac",
+              "destination_uuid": "bfdcb422-9147-4bea-8c9e-74c7bb6c13c8"
+            },
+            {
+              "uuid": "2be11a5b-2708-41ee-8c02-276b0bbeae66",
+              "destination_uuid": "bfdcb422-9147-4bea-8c9e-74c7bb6c13c8"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "d553adda-890a-4067-b6e5-212fd79402e9",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "8e5aeeeb-e273-4add-801a-b672e6dc3db3"
+              },
+              {
+                "uuid": "a2b27be2-7485-4052-a220-a87bcf4fa72a",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "17d469e5-d39f-401e-9ea5-08343b62a4d0"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "8e5aeeeb-e273-4add-801a-b672e6dc3db3",
+                "name": "Complete",
+                "exit_uuid": "38eda920-9490-4f1a-b63f-2a9c985aceac"
+              },
+              {
+                "uuid": "17d469e5-d39f-401e-9ea5-08343b62a4d0",
+                "name": "Expired",
+                "exit_uuid": "2be11a5b-2708-41ee-8c02-276b0bbeae66"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "17d469e5-d39f-401e-9ea5-08343b62a4d0"
+          }
+        },
+        {
+          "uuid": "bfdcb422-9147-4bea-8c9e-74c7bb6c13c8",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "57cb702d-c4c3-4e57-878c-a0b37023d208"
+            },
+            {
+              "destination_uuid": "f74bd15e-396e-4326-99e5-bdf176b1de78",
+              "uuid": "9d183e3e-c6db-41c3-91d2-508e9e7eb928"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "e300ba1c-214b-4d51-8bbd-cc1c3c7d3f97",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "dd92ca25-8574-4028-847a-317b2c175d01"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "df7ff88d-7dba-4c5b-80a1-d87d7b5fc8cf",
+                "name": "Other",
+                "exit_uuid": "57cb702d-c4c3-4e57-878c-a0b37023d208"
+              },
+              {
+                "uuid": "dd92ca25-8574-4028-847a-317b2c175d01",
+                "name": "Yes",
+                "exit_uuid": "9d183e3e-c6db-41c3-91d2-508e9e7eb928"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "df7ff88d-7dba-4c5b-80a1-d87d7b5fc8cf"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "2d88ccec-a862-4f62-aeaa-839a2c857a9b",
+      "name": "SRH - Registration - Nickname",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "4b170952-ec87-485d-b101-761c2e296fef",
+          "exits": [
+            {
+              "destination_uuid": "9cf61449-7fab-44fa-a95b-1e999574b821",
+              "uuid": "f0ee6a26-2d10-4116-8a69-ece4ea16fe51"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "45c8ea98-640f-4437-a31a-3d95bb78ba24",
+              "type": "send_msg",
+              "text": "Want to give me your name or a nickname? If not, that’s cool. Just type NO.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "9cf61449-7fab-44fa-a95b-1e999574b821",
+          "exits": [
+            {
+              "destination_uuid": "680782e5-bdad-4822-9f9a-5228c92fec88",
+              "uuid": "c44085ab-a727-43da-bc3d-0d1986b1c28b"
+            },
+            {
+              "destination_uuid": "a932d800-4e04-42b3-980b-4a72461afea3",
+              "uuid": "be4357a8-bb64-450e-8601-0667e28a2824"
+            },
+            {
+              "destination_uuid": "97a142d3-b903-4299-aae7-6a35752590be",
+              "uuid": "1986d818-103b-4eca-875e-67f3beb1fa47"
+            },
+            {
+              "uuid": "32f8367b-17d4-4d39-9ecd-930f0a28cdf1",
+              "destination_uuid": "0e76f2b4-fd20-47ba-9858-f5edf432358a"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "deb446dd-f2a4-4a26-a87e-f713866aa758",
+                "type": "has_only_phrase",
+                "category_uuid": "39d10087-83de-43c9-a03f-ce21a4e96d7c",
+                "arguments": [
+                  "no"
+                ]
+              },
+              {
+                "uuid": "faef3fda-faeb-4c65-8434-f70179c85c2b",
+                "type": "has_text",
+                "category_uuid": "b969fe9a-08a6-4a6c-8817-9b20eaed6ca8",
+                "arguments": []
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "bbdb9da1-54dd-4b33-82d2-c8cc8e984dc9",
+                "category_uuid": "c372c8f3-bb26-444a-9419-f2430ab8868b"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "39d10087-83de-43c9-a03f-ce21a4e96d7c",
+                "name": "no name",
+                "exit_uuid": "c44085ab-a727-43da-bc3d-0d1986b1c28b"
+              },
+              {
+                "uuid": "b969fe9a-08a6-4a6c-8817-9b20eaed6ca8",
+                "name": "valid",
+                "exit_uuid": "be4357a8-bb64-450e-8601-0667e28a2824"
+              },
+              {
+                "uuid": "d6604266-2741-475b-b9d4-d148a7304779",
+                "name": "Other",
+                "exit_uuid": "1986d818-103b-4eca-875e-67f3beb1fa47"
+              },
+              {
+                "uuid": "c372c8f3-bb26-444a-9419-f2430ab8868b",
+                "name": "Safeguarding",
+                "exit_uuid": "32f8367b-17d4-4d39-9ecd-930f0a28cdf1"
+              }
+            ],
+            "default_category_uuid": "d6604266-2741-475b-b9d4-d148a7304779",
+            "wait": {
+              "type": "msg"
+            },
+            "result_name": "name"
+          }
+        },
+        {
+          "uuid": "680782e5-bdad-4822-9f9a-5228c92fec88",
+          "exits": [
+            {
+              "destination_uuid": "1ec43d0d-2668-4903-9ac7-13c9d43204ff",
+              "uuid": "f49f9a26-9ffd-4c21-940f-6c235e92f2d0"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "16695830-64ec-44b1-b45b-f837433b415e",
+              "type": "send_msg",
+              "text": "Alright, thanks!",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "1ec43d0d-2668-4903-9ac7-13c9d43204ff",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "07d1873a-322c-45a1-afa3-9a9e3ae28500"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "29c3ca46-1f33-4fb0-b118-ef348e7bd48a",
+              "type": "set_contact_field",
+              "field": {
+                "key": "has_srh_nickname",
+                "name": "has srh nickname"
+              },
+              "value": "yes"
+            }
+          ]
+        },
+        {
+          "uuid": "a932d800-4e04-42b3-980b-4a72461afea3",
+          "exits": [
+            {
+              "destination_uuid": "86d132eb-3a7b-4f61-9443-cfd8753d2708",
+              "uuid": "fbe581fe-8d4e-4512-a4a3-60add6cf978c"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "c72e329c-5289-4e54-9fd9-ab91ea5e79ca",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_nickname",
+                "name": "srh nickname"
+              },
+              "value": "@results.name"
+            }
+          ]
+        },
+        {
+          "uuid": "86d132eb-3a7b-4f61-9443-cfd8753d2708",
+          "exits": [
+            {
+              "destination_uuid": "8e1f34a0-df8b-4ec0-a172-01c05772c6cc",
+              "uuid": "06b22b79-ff1e-40e0-ac5f-9b22a94154ee"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "462159b7-dd22-4253-abc3-6502a02495d1",
+              "type": "set_contact_field",
+              "field": {
+                "key": "has_srh_nickname",
+                "name": "has srh nickname"
+              },
+              "value": "yes"
+            }
+          ]
+        },
+        {
+          "uuid": "8e1f34a0-df8b-4ec0-a172-01c05772c6cc",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "39e73207-4081-44ee-97a3-030ec5ff110f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "5716ea16-f295-45f3-be34-63133c9fc4d4",
+              "type": "send_msg",
+              "text": "Hello, @fields.srh_nickname!",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "97a142d3-b903-4299-aae7-6a35752590be",
+          "exits": [
+            {
+              "destination_uuid": "9cf61449-7fab-44fa-a95b-1e999574b821",
+              "uuid": "7cac3f98-6070-4b53-8d13-eae7c399ce1d"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "76923fed-fedc-4432-8978-f8ca08378929",
+              "type": "send_msg",
+              "text": "Sorry, I did not get that. Please type your name or nickname in a single message. If you don't want to, that’s cool. Just type NO.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "0e76f2b4-fd20-47ba-9858-f5edf432358a",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "8be87ff8-860b-4017-9027-772f0a975723"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "894df942-1505-496f-bfc9-aabaf1dcecac",
+              "destination_uuid": "5264ccce-f176-45f7-8fff-ec32506524b3"
+            },
+            {
+              "uuid": "6964e7c5-bb15-4c39-8ad3-2170e1e6d2b3",
+              "destination_uuid": "5264ccce-f176-45f7-8fff-ec32506524b3"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "cea056d0-9b57-4a2b-8196-cf1ef4084081",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "fc63112a-b73e-4d1c-9fa4-95049c8e5fc7"
+              },
+              {
+                "uuid": "63da62d9-f728-4a7e-b6a6-7700440312e6",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "1e181674-c31d-49c3-86f7-0412eaa16cca"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "fc63112a-b73e-4d1c-9fa4-95049c8e5fc7",
+                "name": "Complete",
+                "exit_uuid": "894df942-1505-496f-bfc9-aabaf1dcecac"
+              },
+              {
+                "uuid": "1e181674-c31d-49c3-86f7-0412eaa16cca",
+                "name": "Expired",
+                "exit_uuid": "6964e7c5-bb15-4c39-8ad3-2170e1e6d2b3"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "1e181674-c31d-49c3-86f7-0412eaa16cca"
+          }
+        },
+        {
+          "uuid": "5264ccce-f176-45f7-8fff-ec32506524b3",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "ddfd57a3-2334-4510-9ea9-3f4af5e1796c"
+            },
+            {
+              "destination_uuid": "97a142d3-b903-4299-aae7-6a35752590be",
+              "uuid": "26be8f20-3669-4438-83a1-89262a2e5bdf"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "ce1ec921-0593-4874-b330-b7bb5ecc3b98",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "b82f3a73-49d4-4d87-824d-051d56949760"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "4a9e7741-9e6e-427c-ad4f-5c3b83a7c913",
+                "name": "Other",
+                "exit_uuid": "ddfd57a3-2334-4510-9ea9-3f4af5e1796c"
+              },
+              {
+                "uuid": "b82f3a73-49d4-4d87-824d-051d56949760",
+                "name": "Yes",
+                "exit_uuid": "26be8f20-3669-4438-83a1-89262a2e5bdf"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "4a9e7741-9e6e-427c-ad4f-5c3b83a7c913"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "fdccb5ba-ff8f-4bfb-a940-9f484dbe4d6c",
+      "name": "SRH - Set up default contact fields",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "1f044c99-4fb8-441d-be9c-dcbdabd657d2",
+          "exits": [
+            {
+              "destination_uuid": "a29daebf-921c-4a99-afdd-b9fca2609558",
+              "uuid": "24d66498-77fe-4d4f-b7d6-e48c74ac8193"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "f340cf0f-07ff-4b00-91a3-2f122f112024",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_path",
+                "name": "srh path"
+              },
+              "value": "https://idems-media-recorder.web.app/storage/project/SRH/"
+            }
+          ]
+        },
+        {
+          "uuid": "a29daebf-921c-4a99-afdd-b9fca2609558",
+          "exits": [
+            {
+              "destination_uuid": "2b71fa24-dd63-4cec-85ba-f9c240751dd3",
+              "uuid": "425cb495-82dd-48d6-8b72-f51fd77ab3f8"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "c795368a-4b83-4ae5-bf7a-6d80ceb9283f",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_characters_path",
+                "name": "srh characters path"
+              },
+              "value": "@(fields.srh_path & \"characters/\")"
+            }
+          ]
+        },
+        {
+          "uuid": "2b71fa24-dd63-4cec-85ba-f9c240751dd3",
+          "exits": [
+            {
+              "destination_uuid": "da1dca8e-3411-4f0c-9b7c-d9de6427bc6d",
+              "uuid": "db92e67e-96d8-4ac3-a373-aad6d73ee9d3"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "0542174a-b754-497e-8b31-d62afc1cc4aa",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_image_path",
+                "name": "srh image path"
+              },
+              "value": "@(fields.srh_path & \"images/\")"
+            }
+          ]
+        },
+        {
+          "uuid": "da1dca8e-3411-4f0c-9b7c-d9de6427bc6d",
+          "exits": [
+            {
+              "destination_uuid": "d05b4744-5b5c-4d90-baac-c80f0d9ffa8b",
+              "uuid": "61d0890e-7c10-417f-a532-23fc424e729f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "c0d7816b-d17f-49fd-a032-7f4b3afe9a4f",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_audio_path",
+                "name": "srh audio path"
+              },
+              "value": "@(fields.srh_path & \"audios/\")"
+            }
+          ]
+        },
+        {
+          "uuid": "d05b4744-5b5c-4d90-baac-c80f0d9ffa8b",
+          "exits": [
+            {
+              "destination_uuid": "aaa5cddf-cc33-45d5-b012-7c2c34bf19b2",
+              "uuid": "9bdbb481-6f32-43c2-974a-4c87e45c0a86"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "6a267ec2-08e9-4440-9995-4c50c42fd7af",
+              "type": "set_contact_field",
+              "field": {
+                "key": "srh_video_path",
+                "name": "srh video path"
+              },
+              "value": "@(fields.srh_path & \"videos/\")"
+            }
+          ]
+        },
+        {
+          "uuid": "aaa5cddf-cc33-45d5-b012-7c2c34bf19b2",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "268b8b5a-6390-4f67-a366-71bfb97d6a55"
+            }
+          ],
+          "actions": [
+            {
+              "type": "add_contact_groups",
+              "uuid": "b966eee5-4255-4d1f-b2f4-03acccf02511",
+              "groups": [
+                {
+                  "name": "srh user",
+                  "uuid": "605be91c-6ab0-4a7a-bc06-99c8934c19e6"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "221c05c1-01c1-42c5-9694-3c2e5eeb83fc",
+      "name": "SRH - Registration - Change avatar",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "3a9bd285-924f-488b-ab8f-91aaffbf15b8",
+          "exits": [
+            {
+              "destination_uuid": "631c7200-ff65-47f5-80f5-4dc4faf003c1",
+              "uuid": "6bd5bd54-c793-4e6a-af2c-c1cae2eca32f"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "c418185c-8520-4d79-acea-c371828b4a1d",
+              "type": "set_contact_field",
+              "field": {
+                "key": "prev_avatar",
+                "name": "prev_avatar"
+              },
+              "value": "@(fields.prev_avatar & \"|\" & fields.avatar)"
+            }
+          ]
+        },
+        {
+          "uuid": "631c7200-ff65-47f5-80f5-4dc4faf003c1",
+          "exits": [
+            {
+              "destination_uuid": "0a6c6210-4a16-4220-81a2-d87bb1b366eb",
+              "uuid": "f777cb91-6508-479e-95fc-e2d852e9d669"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "4c787cf8-7ce4-4b67-b9e8-59e5a33bac1b"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "ebe4f9b0-9547-4981-8030-5a158821f757",
+              "flow": {
+                "name": "SRH - Registration - Avatar",
+                "uuid": "af41a3c8-ee2d-46d8-adab-0687e6a12792"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "ef312455-34e7-4c2b-977a-3f74703740fb",
+                "type": "has_only_text",
+                "category_uuid": "7e3f6f3b-80ec-41dd-a82f-62afce604130",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "cff2e099-3fa6-42fd-b355-8281b345aed8",
+                "type": "has_only_text",
+                "category_uuid": "2a871e5a-237f-4da0-9e81-e147f539c42a",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "7e3f6f3b-80ec-41dd-a82f-62afce604130",
+                "name": "Complete",
+                "exit_uuid": "f777cb91-6508-479e-95fc-e2d852e9d669"
+              },
+              {
+                "uuid": "2a871e5a-237f-4da0-9e81-e147f539c42a",
+                "name": "Expired",
+                "exit_uuid": "4c787cf8-7ce4-4b67-b9e8-59e5a33bac1b"
+              }
+            ],
+            "default_category_uuid": "2a871e5a-237f-4da0-9e81-e147f539c42a"
+          }
+        },
+        {
+          "uuid": "0a6c6210-4a16-4220-81a2-d87bb1b366eb",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "c73cfdc3-2d94-4e80-b34b-21e18cc30b00"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "5ce2984a-45b5-4985-962d-b3e7466d1c71",
+              "type": "send_msg",
+              "text": "Ready to chat? Type HELLO 🙂",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    },
+    {
+      "uuid": "0c3472b3-7895-486c-bd25-5d352029ec4d",
+      "name": "SRH*UR - SRH UR Menu option",
+      "language": "eng",
+      "type": "messaging",
+      "nodes": [
+        {
+          "uuid": "eb09629f-d3c0-4e4b-bf7f-885cad9c9e32",
+          "exits": [
+            {
+              "destination_uuid": "16e7a6c9-5bac-4e0d-b5b2-a5afbddb779d",
+              "uuid": "14eea7d3-4ca3-4c9f-8145-b07e4b468903"
+            },
+            {
+              "destination_uuid": "6fe78c83-21d8-4a1a-8b63-02430755ebf3",
+              "uuid": "31c9f660-e9ca-4666-bcd6-e898103f8c8f"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@contact.groups",
+            "cases": [
+              {
+                "uuid": "e71d6bea-0e66-439a-979a-2b0cbe07bfe7",
+                "type": "has_group",
+                "category_uuid": "d9bf818d-6d5a-4388-b811-260b6ae5e934",
+                "arguments": [
+                  "605be91c-6ab0-4a7a-bc06-99c8934c19e6",
+                  "srh user"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "d9bf818d-6d5a-4388-b811-260b6ae5e934",
+                "name": "srh user",
+                "exit_uuid": "14eea7d3-4ca3-4c9f-8145-b07e4b468903"
+              },
+              {
+                "uuid": "dc2702f6-4e5b-441e-a31a-3719fc8c5655",
+                "name": "Other",
+                "exit_uuid": "31c9f660-e9ca-4666-bcd6-e898103f8c8f"
+              }
+            ],
+            "default_category_uuid": "dc2702f6-4e5b-441e-a31a-3719fc8c5655",
+            "result_name": ""
+          }
+        },
+        {
+          "uuid": "16e7a6c9-5bac-4e0d-b5b2-a5afbddb779d",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "5289a345-421b-412a-9c7a-60db05b009fe"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "2165cc20-5889-4c2a-8405-287ef3ee67fb"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "002b2c4d-8cd8-40b5-9c92-0da9878cbbcd",
+              "flow": {
+                "name": "SRH - Wrapper - Interaction - Entry",
+                "uuid": "3f8bb147-156d-4057-9a18-bcb24e52e64c"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "c5681c25-5864-4ce0-832a-af0e825be74f",
+                "type": "has_only_text",
+                "category_uuid": "79661f7c-d590-4d75-b023-cfef9a7f809b",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "53b6dbdd-e8d6-4acb-a8c0-4b5727508108",
+                "type": "has_only_text",
+                "category_uuid": "2a1d1a82-5ad0-4de6-aeb7-6d8e994dd935",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "79661f7c-d590-4d75-b023-cfef9a7f809b",
+                "name": "Complete",
+                "exit_uuid": "5289a345-421b-412a-9c7a-60db05b009fe"
+              },
+              {
+                "uuid": "2a1d1a82-5ad0-4de6-aeb7-6d8e994dd935",
+                "name": "Expired",
+                "exit_uuid": "2165cc20-5889-4c2a-8405-287ef3ee67fb"
+              }
+            ],
+            "default_category_uuid": "2a1d1a82-5ad0-4de6-aeb7-6d8e994dd935"
+          }
+        },
+        {
+          "uuid": "6fe78c83-21d8-4a1a-8b63-02430755ebf3",
+          "exits": [
+            {
+              "destination_uuid": "ecd14287-9e23-4c9b-b213-8be704e1496c",
+              "uuid": "cce296d9-9bbf-446a-aa22-26e1344c54f5"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "2d6b651f-c30b-47a9-ae7a-82d5721e8907",
+              "type": "send_msg",
+              "text": "YUTE EXPRESSION provides Sexual and Reproductive Health Info for Youth.\n\nWould you like to join?\n\nPlease pick the number for the option you want:\n1. Yes\n0. No",
+              "attachments": [
+                "image:https://firebasestorage.googleapis.com/v0/b/idems-media-recorder.appspot.com/o/project%2FSRH%2Fimages%2FYute_Expression_Welcome.jpg?alt=media&token=58730248-b48a-41cf-9668-a515e197ffbb"
+              ],
+              "quick_replies": [
+                "1",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "uuid": "ecd14287-9e23-4c9b-b213-8be704e1496c",
+          "exits": [
+            {
+              "destination_uuid": "9ae7eafc-2b81-45f1-a133-0d1b3233bb3a",
+              "uuid": "a0ebbac2-43d0-41ea-96b8-99486d812ede"
+            },
+            {
+              "destination_uuid": "3014b8cf-8058-4782-96d7-a453df22fa7a",
+              "uuid": "9c3b8aae-eaeb-446b-9c8d-628a5f15f205"
+            },
+            {
+              "destination_uuid": "98348d3d-b403-4470-bf87-411fab45ef81",
+              "uuid": "c7195bcf-2449-4755-8677-bba9a131ead4"
+            },
+            {
+              "uuid": "e9b49492-4ea4-4386-9917-009a0ebbcbe6",
+              "destination_uuid": "f06c8d18-ae6c-4915-b143-45ab2758a714"
+            }
+          ],
+          "actions": [],
+          "router": {
+            "type": "switch",
+            "operand": "@input.text",
+            "cases": [
+              {
+                "uuid": "b3c4d37b-3517-4632-bfa2-14cbdd357aa7",
+                "type": "has_any_word",
+                "category_uuid": "613c9b47-d666-49dc-8d84-cc61d038c33b",
+                "arguments": [
+                  "yes y yep yeah,1,"
+                ]
+              },
+              {
+                "uuid": "0d2b702e-56fa-4d80-b2f8-32e8e635b5da",
+                "type": "has_any_word",
+                "category_uuid": "5f35d43c-73ac-405d-ab2b-f94e9d471caf",
+                "arguments": [
+                  "no n nope,0,"
+                ]
+              },
+              {
+                "arguments": [
+                  "kidnap,kidnapping,kidnapper,kidnapped,kiddnapp,kidnapp,kiddnap,kidnape,death,dead,dying,deeath,deat,illegal,ilegal,ellegal,ileagaly,poison,poisoning,poisoned,pesian,boisoned,poision,poisioning,poisioned,crisis,crises,krisis,krises,trouble,troubling,troublesome,troubled,troubl,trevel,trubl,victim,victimised,victm,victimized,victem,emergency,911.0,emergincy,emergincey,emergince,danger,dangerous,endangered,dangeur,dangeer,dangre,stalking,staling,staking,stakling,stalkin,follow,following,followed,folow,folowed,followin,folowin,suffer,suffering,suffered,hide,hiding,hid,murder,murdering,murdered,murda,merder,merda,violence,violence,violent,vilence,voilence,war,fight,fighting,fighter,fought,fite,Force,forcing,fource,foce,Forse,beat,beating,beater,beat,beet,beit,beite,fuck,fucking,fucker,fucked,fucc,fux,fck,cheat,cheating,cheater,cheated,cheet,bun,chete,slap,slapping,slapper,slapped,slapp,spank,spanking,spanker,spanked,abuse,abusing,abuser,abused,abus,ahbuse,abbuse,shot,shooting,shooter,shute,slash,slashing,slasher,slashed,hit,hitting,hitter,stomp,stomping,stomped,stump,threat,threaten,brutal,brutally,bruise,bruising,bruises,bruised,bruse,kill,killing,kills,killed,choke,choking,choked,strangle,vomit,vomitted,vomitting,throw up,yak,vomited,womit,tro up,puke,puking,puked,disease,diseases,diseaze,dizeese,sick,sickness,sickly,sik,seck,ill,illness,illnesses,illl,illniss,illnees,hospital,clinic,hopital,hopsital,COVID,COVID19,covik,bleed,bleeding,bled,blood,blud,clot,clotting,clat,clatting,dead,die,death,ded,choke,choking,choked,pain,gush,gushing,gushed,miscarriage,miscarry,miscariage,miscarig,anxiety,anxious,anxiousness,angziaty,anxieti,anxeity,depression,depressive,depressed,despression,despressive,despressed,disorder,disorders,dizorder,dissorder,isorder,therapy,psychologist,suicide,suicidal,suicides,kill myself,suicido,suiced,kill miself,hang,heng,stress,stressed,stresss,strees,srtess,distress,distressed,destressed,destresss,sad,saddened,sadd,saddenned,sadend,scare,scared,csared,csare,afraid,afaid,fraid,worried,woried,worry,fear,frighten,fer,fire,panic,panicking,panicked,panik,paniked,paniking,mad,md,made,cry,cried,bawl,grief,greif,griev,fire,wildfire,blaze,burnt,hot,fir,earthquake,Landslide,collapse,shake,irthquake,earthquak,fall,flood,flooded,flooding,monsoon,flud,flod,munson,smoke,smoked,smooke,smok,typhoon,hurricane,tornado,cyclone,storm,rain,water,stormy,droughts,dry,aridity,dri,volcanic eruption,volcano,fire,hot,wind,blast,windy,air,hit,hitting,hits,hitt,hitin,hittin,beat,beating,beats,beetin,beeting,beets,bet,abuse,abusive,abusing,Abused,abuzin,abuz,buse,violent,violence,violnce,vilent,vilence,voilence,pain,painful,pains,paining,pen,poen,blood,bleeding,bled,blud,bleding,bleedding,bruise,bruising,bruised,brusing,brused,broosed,hurt,hurting,hurts,hurted,hurrt,ache,aching,ached,acked,injury,injured,inguries,cut,cutting,cutt,harm,harming,harmful,harmed,harrm,harme,haarm,harmng,slap,slapped,slapping,slip,slappping,slaped,slape,punch,punched,punching,punches,kill,killing,killed,kills,cill,cills,kilin,khil,killy,murder,murderer,murdering,murdered,merdered,murd,mrdered,bang,banging,banged,baning,bangin,pang,blow,below,blo,bow,cane,stick,can,belt,girdle,strap,stab,stabbing,stabbed,sabbed,satb,stabing,scream,screaming,screamed,screem,creamed,screemed,push,pushing,pushed,puss,pusing,shove,shoving,shoved,shoove,shooved,shov,kick,kicking,kicked,kiked,kik,kickin,strike,striking,stricked,strikd,strik,stricke,torture,tortured,tortue,tortued,torured,taucha,torcha,tacha,throw,throwing,throws,trow,trowing,trows,rape,raping,rapist,rapeing,rapping,raipe,rap,violate,violation,violated,violat,vilate,volated,sex,sexual,sexually,sext,sexting,xxx,ex,seggs,force,forced,forcing,forc,forcin,pressure,pressured,pressuring,perssure,perssured,presssure,coercive,coerce,coerced,coersive,corrisive,misconduct,inappropriate,unacceptable,miscund,inappropiate,harassment,stalking,perpetration,stolk,blame,blaming,blam,box,bax,stab,Stabbing,tab,tab up,rough,ruf,ruff,ruogh,drugs,drug,drog,drogs,addict,addiction,dependence,adict,adic,addick,cocaine,coke,blow,charlie,crack,white,koke,heroine,brown,smack,skag,hose,hero,high,tipsy,overdose,overdosed,LSD,acid,cheer,drop,magic mushrooms,alice,shrooms,alcohol,booze,liquor,alcoholic,hooch,alcol,ahlcohol,alqual,licka,rum,vodka,drunk,speed,billy,paste,base,whizz,poppers,liquid gold,jungle juice,rush,buzz,weed,cannabis,Marijuana,dope,grass,pot,CBD,THC,bud,cigz,ganja,spliff,splif,Maryjane,Mary Jane,blunt,kush,herbs,Cali,cigarette,ectasy,brownies,crystal,mandy,md,mdma,molly,pills,crystal meth,ice,meth,speed,crank,ketamine,ket,Morphine,Oxycodone,Oxy,Oxycotton,rehabilitation,detoxification,rehab,detox,pregnant,pregnancy,expecting,pegant,preganci,prengant,abortion,abort,aborted,aborting,abbortion,obortion,STI,STD,infection,chlamydia,clamidia,clamydia,camidia,gonorrhea,clap,gonnorea,gonaria,gonareah,Syphilis,siphilis,sifilis,syphillis,HPV,herpes,virus,cancer,cervical cancer,hepatitis,hepititis,hep,heptitis,discharge,descharge,dischrge,burn,itch,burning,itching,scratch,bun,ich,HIV,AIDS,discriminate,discrimination,descriminate,bias,treat bad,parenting,parent,hello,sos,support,counsellor,counselor,register,registration"
+                ],
+                "type": "has_any_word",
+                "uuid": "a0f5f541-b6d6-420d-9558-d5a193273264",
+                "category_uuid": "20bd2264-c817-4e03-9067-19c46f0311d3"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "613c9b47-d666-49dc-8d84-cc61d038c33b",
+                "name": "Yes Y Yep Yeah",
+                "exit_uuid": "a0ebbac2-43d0-41ea-96b8-99486d812ede"
+              },
+              {
+                "uuid": "5f35d43c-73ac-405d-ab2b-f94e9d471caf",
+                "name": "No N Nope",
+                "exit_uuid": "9c3b8aae-eaeb-446b-9c8d-628a5f15f205"
+              },
+              {
+                "uuid": "89ffb44f-ddbb-47ec-a3b3-cd9465ad5266",
+                "name": "Other",
+                "exit_uuid": "c7195bcf-2449-4755-8677-bba9a131ead4"
+              },
+              {
+                "uuid": "20bd2264-c817-4e03-9067-19c46f0311d3",
+                "name": "Safeguarding",
+                "exit_uuid": "e9b49492-4ea4-4386-9917-009a0ebbcbe6"
+              }
+            ],
+            "default_category_uuid": "89ffb44f-ddbb-47ec-a3b3-cd9465ad5266",
+            "wait": {
+              "type": "msg"
+            }
+          }
+        },
+        {
+          "uuid": "9ae7eafc-2b81-45f1-a133-0d1b3233bb3a",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "aaf85c8f-2505-4d70-a561-39aeb32781c8"
+            },
+            {
+              "destination_uuid": null,
+              "uuid": "b88dfe8c-21b8-4d8d-8539-cd987e5098ce"
+            }
+          ],
+          "actions": [
+            {
+              "type": "enter_flow",
+              "uuid": "a52e71d3-63d3-43c0-af12-d313954f2490",
+              "flow": {
+                "name": "SRH - Registration",
+                "uuid": "5f565cc0-a653-4cc1-a650-077f091d13e7"
+              }
+            }
+          ],
+          "router": {
+            "type": "switch",
+            "operand": "@child.run.status",
+            "cases": [
+              {
+                "uuid": "8b1e14f8-f792-4bd2-b256-bd9ffcde4d9d",
+                "type": "has_only_text",
+                "category_uuid": "474a74ee-8be1-4a72-8760-12268bffb09e",
+                "arguments": [
+                  "completed"
+                ]
+              },
+              {
+                "uuid": "6126efc0-2133-49f7-9507-0b507f884120",
+                "type": "has_only_text",
+                "category_uuid": "9e510b7f-8ff5-4e61-af93-713d0aa550e0",
+                "arguments": [
+                  "expired"
+                ]
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "474a74ee-8be1-4a72-8760-12268bffb09e",
+                "name": "Complete",
+                "exit_uuid": "aaf85c8f-2505-4d70-a561-39aeb32781c8"
+              },
+              {
+                "uuid": "9e510b7f-8ff5-4e61-af93-713d0aa550e0",
+                "name": "Expired",
+                "exit_uuid": "b88dfe8c-21b8-4d8d-8539-cd987e5098ce"
+              }
+            ],
+            "default_category_uuid": "9e510b7f-8ff5-4e61-af93-713d0aa550e0"
+          }
+        },
+        {
+          "uuid": "3014b8cf-8058-4782-96d7-a453df22fa7a",
+          "exits": [
+            {
+              "destination_uuid": null,
+              "uuid": "2798da38-c2ff-4efe-8d35-92e0624a80e4"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "bf99036d-7db4-4c28-9e8b-e9f2d4c26ec8",
+              "type": "send_msg",
+              "text": "That's ok! you can always type \"REGISTER_YUTE\" if you want to join.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "98348d3d-b403-4470-bf87-411fab45ef81",
+          "exits": [
+            {
+              "destination_uuid": "6fe78c83-21d8-4a1a-8b63-02430755ebf3",
+              "uuid": "95861a3d-76fc-4393-90ea-4a4df44c2474"
+            }
+          ],
+          "actions": [
+            {
+              "uuid": "403742b7-7545-4efd-8568-771acf636317",
+              "type": "send_msg",
+              "text": "Sorry, I don't understand what you mean.",
+              "attachments": [],
+              "quick_replies": []
+            }
+          ]
+        },
+        {
+          "uuid": "f06c8d18-ae6c-4915-b143-45ab2758a714",
+          "actions": [
+            {
+              "flow": {
+                "name": "SRH - Safeguarding - WFR interaction",
+                "uuid": "ecbd9a63-0139-4939-8b76-343543eccd94"
+              },
+              "type": "enter_flow",
+              "uuid": "52f3a9a4-51d2-4b94-8cf9-327913219ebe"
+            }
+          ],
+          "exits": [
+            {
+              "uuid": "3f1efa0f-b93f-43d7-aada-4a6a0afcdccf",
+              "destination_uuid": "2df64fe8-f9d9-4413-ac69-3024b10c28b6"
+            },
+            {
+              "uuid": "3b6f4ad4-195d-4df8-a450-50f2ab602265",
+              "destination_uuid": "2df64fe8-f9d9-4413-ac69-3024b10c28b6"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "12c82c5b-7a82-47d9-9dc1-148a291e8293",
+                "type": "has_only_text",
+                "arguments": [
+                  "completed"
+                ],
+                "category_uuid": "6634ed1e-95db-4f29-b8f5-5f61af6f7297"
+              },
+              {
+                "uuid": "8afbc062-b34f-474b-b7f4-2f4e466d3481",
+                "type": "has_only_text",
+                "arguments": [
+                  "expired"
+                ],
+                "category_uuid": "a2c4af8d-6a92-4ae2-84a3-76057c00ce1b"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "6634ed1e-95db-4f29-b8f5-5f61af6f7297",
+                "name": "Complete",
+                "exit_uuid": "3f1efa0f-b93f-43d7-aada-4a6a0afcdccf"
+              },
+              {
+                "uuid": "a2c4af8d-6a92-4ae2-84a3-76057c00ce1b",
+                "name": "Expired",
+                "exit_uuid": "3b6f4ad4-195d-4df8-a450-50f2ab602265"
+              }
+            ],
+            "operand": "@child.run.status",
+            "type": "switch",
+            "default_category_uuid": "a2c4af8d-6a92-4ae2-84a3-76057c00ce1b"
+          }
+        },
+        {
+          "uuid": "2df64fe8-f9d9-4413-ac69-3024b10c28b6",
+          "actions": [],
+          "exits": [
+            {
+              "uuid": "b4cd7370-38af-4752-bb9f-4b19ba8e9afc"
+            },
+            {
+              "destination_uuid": "6fe78c83-21d8-4a1a-8b63-02430755ebf3",
+              "uuid": "c66ef38d-80fc-4d58-a2d2-ecf6291cdf1b"
+            }
+          ],
+          "router": {
+            "cases": [
+              {
+                "uuid": "6cb20f4c-12b1-4388-81b5-4acba8915422",
+                "type": "has_any_word",
+                "arguments": [
+                  "yes"
+                ],
+                "category_uuid": "0ef91d82-8555-4356-b6ad-d8cb71caa3a5"
+              }
+            ],
+            "categories": [
+              {
+                "uuid": "1bf31efc-3e96-4e99-aabd-f0e38c3b95fe",
+                "name": "Other",
+                "exit_uuid": "b4cd7370-38af-4752-bb9f-4b19ba8e9afc"
+              },
+              {
+                "uuid": "0ef91d82-8555-4356-b6ad-d8cb71caa3a5",
+                "name": "Yes",
+                "exit_uuid": "c66ef38d-80fc-4d58-a2d2-ecf6291cdf1b"
+              }
+            ],
+            "operand": "@child.results.sg_back",
+            "type": "switch",
+            "default_category_uuid": "1bf31efc-3e96-4e99-aabd-f0e38c3b95fe"
+          }
+        }
+      ],
+      "spec_version": "13.1.0",
+      "revision": 0,
+      "expire_after_minutes": 10080,
+      "metadata": {},
+      "localization": {}
+    }
+  ],
+  "groups": [
+    {
+      "name": "srh completed registration",
+      "uuid": "6e0b939c-02a8-42c2-a0ea-6cd4f18ae0e6"
+    },
+    {
+      "name": "srh user",
+      "uuid": "605be91c-6ab0-4a7a-bc06-99c8934c19e6"
+    }
+  ],
+  "site": "https://rapidpro.idems.international",
+  "triggers": [],
+  "version": "13"
+}

@@ -48,7 +48,7 @@ def main():
         
         input_path_5 = output_path_4 + output_name_4 + ".json"
         source_file_name = f"{source_file_name}_safeguarding"
-        output_path_5 = f"./temp/{source_file_name}.json"
+        output_path_5 = f"./test/{source_file_name}.json"
         safeguarding_path = "./edits/safeguarding_srh.json"
         subprocess.run(["node", "./node_modules/@idems/safeguarding-rapidpro/srh_add_safeguarding_to_flows.js", input_path_5, safeguarding_path, output_path_5, sg_flow_uuid, sg_flow_name])
         print("Added safeguarding")
