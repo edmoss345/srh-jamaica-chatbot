@@ -52,22 +52,22 @@ for ($i=0; $i -lt $source_files.length; $i++) {
     $input_path_5 = $output_path_4 + $output_name_4 +".json"
     $source_file_name = $source_file_name + "_safeguarding"
     $output_path_5 = ".\temp\"+ $source_file_name +".json"
-    # $safeguarding_path = ".\edits\safeguarding_srh.json"
-    # node ..\safeguarding-rapidpro\srh_add_safeguarding_to_flows.js $input_path_5 $safeguarding_path $output_path_5 $sg_flow_uuid $sg_flow_name
-    # Write-Output "Added safeguarding"
+    $safeguarding_path = ".\edits\safeguarding_srh.json"
+    node ..\safeguarding-rapidpro\srh_add_safeguarding_to_flows.js $input_path_5 $safeguarding_path $output_path_5 $sg_flow_uuid $sg_flow_name
+    Write-Output "Added safeguarding"
 
-    # if($source_file_name -match 'srh_safeguarding'){
-    #     node ..\safeguarding-rapidpro\srh_edit_redirect_flow.js $output_path_5 $safeguarding_path $output_path_5
-    #     Write-Output "Edited redirect sg flow"
-    # }
+    if($source_file_name -match 'srh_safeguarding'){
+        node ..\safeguarding-rapidpro\srh_edit_redirect_flow.js $output_path_5 $safeguarding_path $output_path_5
+        Write-Output "Edited redirect sg flow"
+    }
 
 #     # step final: split in 2 json files because it's too heavy to load (need to replace wrong flow names)
-    # if($source_file_name -match 'srh_content'  ){
-    #     $input_path_6 = $output_path_5 
-    #     $n_file = 2
-    #     node ..\idems-chatbot-repo\split_in_multiple_json_files.js $input_path_6 $n_file
+    if($source_file_name -match 'srh_content'  ){
+        $input_path_6 = $output_path_5 
+        $n_file = 2
+        node ..\idems-chatbot-repo\split_in_multiple_json_files.js $input_path_6 $n_file
 
-    #     Write-Output ("Split file in " + $n_file + " parts")
-    # }
+        Write-Output ("Split file in " + $n_file + " parts")
+    }
 Write-Output (" -------------------- ")
 }

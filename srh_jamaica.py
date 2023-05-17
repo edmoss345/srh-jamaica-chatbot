@@ -39,31 +39,31 @@ def main():
         output_path_4 = "./test/"
         output_name_4 = source_file_name
 
-        subprocess.run(["node", "./node_modules/idems_translation_chatbot/index.js", "move_quick_replies", input_path, select_phrases_file, output_name_4, output_path_4, add_selectors, special_words])
+        subprocess.run(["node", "./node_modules/@idems/idems_translation_chatbot/index.js", "move_quick_replies", input_path, select_phrases_file, output_name_4, output_path_4, add_selectors, special_words])
         print("Removed quick replies")
 
         # # step 5: safeguarding
-        # sg_flow_uuid = "ecbd9a63-0139-4939-8b76-343543eccd94"
-        # sg_flow_name = "SRH - Safeguarding - WFR interaction"
+        sg_flow_uuid = "ecbd9a63-0139-4939-8b76-343543eccd94"
+        sg_flow_name = "SRH - Safeguarding - WFR interaction"
         
-        # input_path_5 = output_path_4 + output_name_4 + ".json"
-        # source_file_name = f"{source_file_name}_safeguarding"
-        # output_path_5 = f"./temp/{source_file_name}.json"
-        # safeguarding_path = "./edits/safeguarding_srh.json"
-        # subprocess.run(["node", "../safeguarding-rapidpro/srh_add_safeguarding_to_flows.js", input_path_5, safeguarding_path, output_path_5, sg_flow_uuid, sg_flow_name])
-        # print("Added safeguarding")
+        input_path_5 = output_path_4 + output_name_4 + ".json"
+        source_file_name = f"{source_file_name}_safeguarding"
+        output_path_5 = f"./temp/{source_file_name}.json"
+        safeguarding_path = "./edits/safeguarding_srh.json"
+        subprocess.run(["node", "./node_modules/@idems/safeguarding-rapidpro/srh_add_safeguarding_to_flows.js", input_path_5, safeguarding_path, output_path_5, sg_flow_uuid, sg_flow_name])
+        print("Added safeguarding")
 
-        # if "srh_safeguarding" in source_file_name:
-        #     subprocess.run(["node", "../safeguarding-rapidpro/srh_edit_redirect_flow.js", output_path_5, safeguarding_path, output_path_5])
-        #     print("Edited redirect sg flow")
+        if "srh_safeguarding" in source_file_name:
+            subprocess.run(["node", "./node_modules/@idems/safeguarding-rapidpro/srh_edit_redirect_flow.js", output_path_5, safeguarding_path, output_path_5])
+            print("Edited redirect sg flow")
 
         # # step final: split in 2 json files because it's too heavy to load (need to replace wrong flow names)
-        # if "srh_content" in source_file_name:
-        #     input_path_6 = output_path_5
-        #     n_file = 2
-        #     subprocess.run(["node", "../idems-chatbot-repo/split_in_multiple_json_files.js", input_path_6, str(n_file)])
+        if "srh_content" in source_file_name:
+            input_path_6 = output_path_5
+            n_file = 2
+            subprocess.run(["node", "./node_modules/@idems/idems-chatbot-repo/split_in_multiple_json_files.js", input_path_6, str(n_file)])
 
-        #     print(f"Split file in {n_file}")
+            print(f"Split file in {n_file}")
 
 if __name__ == '__main__':
     main()
