@@ -1,8 +1,6 @@
 import os
 import subprocess
 import sys
-# sys.path.append('C:/Users/edmun/Code/rapidpro-flow-toolkit/src/rapidpro_flow_tools')
-# import flow_converter
 from rapidpro_flow_tools import flow_converter
 
 def main(credentials = None, token = None):
