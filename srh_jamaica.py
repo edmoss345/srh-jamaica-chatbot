@@ -15,7 +15,7 @@ def main(credentials = None, token = None):
         source_file_name = source_files[i]
 
         output_flow_path = "./flows/" + source_files[i] + ".json"
-        flow_converter.convert_flow("create_flows", spreadsheet_IDS[i], output_flow_path, "google_sheets", "models.srh_models", credentials, token)
+        flow_converter.convert_flow("create_flows", spreadsheet_IDS[i], output_flow_path, "google_sheets", "models.srh_models")
 
         # os.chdir("../rapidpro-flow-toolkit")
         # output_flow_path = "../srh-jamaica-chatbot/flows/" + source_files[i] + ".json"
