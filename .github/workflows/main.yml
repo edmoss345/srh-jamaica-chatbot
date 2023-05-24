@@ -6,22 +6,8 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
-    inputs:
-      input1:
-        description: 'Take sample input'
-        required: true
 
 jobs:
-  check_input:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Print Input
-        run: |
-          echo "Confirming your input was ${{ github.event.inputs.input1 }}"
 
   core-function:
     runs-on: ubuntu-latest
@@ -34,4 +20,7 @@ jobs:
         run: npm ci
 
       - name: Run Python function
-        run: python srh_jamaica.py
+        env:
+          CREDENTIALS: ${{ secrets.CREDENTIALS }}
+          TOKEN: ${{ secrets.TOKEN }}
+        run: python srh_jamaica.py "CREDENTIALS" "TOKEN"
