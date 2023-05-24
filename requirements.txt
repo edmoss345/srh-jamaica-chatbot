@@ -5,4 +5,4 @@ tablib[ods]>=3.1.0
 openpyxl~=3.0.7
 google-api-python-client~=2.6.0
 google-auth-oauthlib~=0.4.4
-rapidpro-flow-tools~=0.9.2
+rapidpro-flow-tools
