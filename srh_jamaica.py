@@ -7,6 +7,9 @@ from rapidpro_flow_tools import flow_converter
 
 def main(credentials = None, token = None):
 
+    credentials = os.getenv('CREDENTIALS', credentials)
+    token = os.getenv('TOKEN', token)
+
     source_files = ["srh_registration", "srh_entry", "srh_content", "srh_safeguarding"]
     spreadsheet_IDS = ["1yett-Rfzb9Ou8IQ1kwtrKPN_auhM-lk66r9gkqNV1As", "19xvYfwWKA1hT5filGPWYEobQL1ZFfcFbTj1-aJCN8OQ", "1hOlgdqjmXZgl51L1olt357Gfiw2zRHNEl98aYTf8Hwo", "1A_p3cb3KNgX8XxD9MlCIoa294Y4Pb9obUKfwIvERALY"]
 
@@ -15,7 +18,7 @@ def main(credentials = None, token = None):
         source_file_name = source_files[i]
 
         output_flow_path = "./flows/" + source_files[i] + ".json"
-        flow_converter.convert_flow("create_flows", spreadsheet_IDS[i], output_flow_path, "google_sheets", "models.srh_models")
+        flow_converter.convert_flow("create_flows", spreadsheet_IDS[i], output_flow_path, "google_sheets", "models.srh_models", credentials, token)
 
         # os.chdir("../rapidpro-flow-toolkit")
         # output_flow_path = "../srh-jamaica-chatbot/flows/" + source_files[i] + ".json"
