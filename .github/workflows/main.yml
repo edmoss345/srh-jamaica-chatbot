@@ -29,4 +29,4 @@ jobs:
         env:
           CREDENTIALS: ${{ secrets.CREDENTIALS }}
           TOKEN: ${{ secrets.TOKEN }}
-        run: python srh_jamaica.py "CREDENTIALS" "TOKEN"
+        run: python srh_jamaica.py
