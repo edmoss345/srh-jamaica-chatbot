@@ -25,11 +25,17 @@ jobs:
           TOKEN: ${{ secrets.TOKEN }}
         run: python srh_jamaica.py
 
-      - name: Commit and push changes
+      - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+          git remote set-url origin "https://github.com/${{ github.repository }}"
+          git checkout ${{ github.ref }}
+
+      - name: Push changes
+        env:
+          PAT: ${{ secrets.GITHUB_TOKEN }}
+        run: |
           git add output
-          git add flows
           git commit -m "Add output files"
-          git push
+          git push origin HEAD:${{ github.ref }}
