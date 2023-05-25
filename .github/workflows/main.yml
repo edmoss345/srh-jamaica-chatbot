@@ -1,11 +1,5 @@
 name: Custom Workflow
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
@@ -30,3 +24,12 @@ jobs:
           CREDENTIALS: ${{ secrets.CREDENTIALS }}
           TOKEN: ${{ secrets.TOKEN }}
         run: python srh_jamaica.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add output
+          git add flows
+          git commit -m "Add output files"
+          git push

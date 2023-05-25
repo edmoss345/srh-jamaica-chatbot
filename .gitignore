@@ -1,7 +1,9 @@
 # Intermediary output files
 temp/
 
-
+#credentials files
+credentials.json
+token.json
 
 # Logs
 logs
