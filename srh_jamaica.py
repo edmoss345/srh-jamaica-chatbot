@@ -39,7 +39,7 @@ def main(credentials = None, token = None):
         select_phrases_file = "./edits/select_phrases.json"
         special_words = "./edits/special_words.json"
         add_selectors = "yes"
-        output_path_4 = "./test/"
+        output_path_4 = "./output/"
         output_name_4 = source_file_name
 
         subprocess.run(["node", "./node_modules/@idems/idems_translation_chatbot/index.js", "move_quick_replies", input_path, select_phrases_file, output_name_4, output_path_4, add_selectors, special_words])
