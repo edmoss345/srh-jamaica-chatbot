@@ -1,4 +1,4 @@
-name: Custom Workflow
+name: Produce RapidPro Flows
 on:
   workflow_dispatch:
 
