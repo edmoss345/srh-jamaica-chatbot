@@ -3,7 +3,8 @@
 ## Setup
 1. Install python `>=3.6`
 2. Run `pip install -r requirements.txt`
-3. Run `npm install`
+3. Install node and npm lts
+4. Run `npm install`
 
 ## Producing RapidPro Flows
 ```

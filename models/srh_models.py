@@ -77,9 +77,3 @@ class SgEntryModel(DataRowModel):
 	question: str = ''
 	yes_flow: str = ''
 	no_message: str = ''
-
-
-
-
-
-

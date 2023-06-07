@@ -64,7 +64,7 @@ def main(credentials = None, token = None):
         if "srh_content" in source_file_name:
             input_path_6 = output_path_5
             n_file = 2
-            subprocess.run(["node", "./node_modules/@idems/idems-chatbot-repo/split_in_multiple_json_files.js", input_path_6, str(n_file)])
+            subprocess.run(["node", "./node_modules/@idems/idems-chatbot-tools/split_in_multiple_json_files.js", input_path_6, str(n_file)])
 
             print(f"Split file in {n_file}")
 
