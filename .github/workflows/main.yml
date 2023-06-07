@@ -23,7 +23,7 @@ jobs:
         env:
           CREDENTIALS: ${{ secrets.CREDENTIALS }}
           TOKEN: ${{ secrets.TOKEN }}
-        run: python srh_jamaica.py
+        run: python -c "import srh_jamaica; srh_jamaica.main('$CREDENTIALS', '$TOKEN')"
 
       - name: Publish output folder
         uses: actions/upload-artifact@v2

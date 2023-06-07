@@ -126,4 +126,4 @@ dist
 .pnp.*
 
 # Comiled pyc files
-.pyc
+*.pyc
