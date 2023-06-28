@@ -36,6 +36,8 @@ def main(credentials = None, token = None):
         select_phrases_file = "./edits/select_phrases.json"
         special_words = "./edits/special_words.json"
         add_selectors = "yes"
+        if not os.path.exists("./output/"):
+            os.makedirs("./output/")
         output_path_4 = "./output/"
         output_name_4 = source_file_name
 
