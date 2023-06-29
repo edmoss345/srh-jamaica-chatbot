@@ -21,7 +21,7 @@ def main(credentials = None, token = None):
         flow_converter.convert_flow("create_flows", spreadsheet_id, output_flow_path, "google_sheets", "models.srh_models", credentials, token)
         
         print("created " + source_file_name)
-        input_path = "./flows/" + source_file_name + ".json"
+        input_path = "./output/" + source_file_name + ".json"
 
         # # step 2: flow edits & A/B testing
         # SPREADSHEET_ID = "17q1mSyZU9Eu9-oHTE5zg20qrkkngfTlbgxjo2hOia_Q"
