@@ -17,7 +17,7 @@ def main(credentials = None, token = None):
         source_file_name = source["filename"]
         spreadsheet_id  = source["spreadsheet_id"]
 
-        output_flow_path = "./flows/" + source_file_name + ".json"
+        output_flow_path = "./output/" + source_file_name + ".json"
         flow_converter.convert_flow("create_flows", spreadsheet_id, output_flow_path, "google_sheets", "models.srh_models", credentials, token)
         
         print("created " + source_file_name)
