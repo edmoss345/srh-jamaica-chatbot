@@ -73,5 +73,7 @@ def main(credentials = None, token = None):
             print(f"Split file in {n_file}")
 
 if __name__ == '__main__':
-    main()
+    credentials = os.getenv('CREDENTIALS')
+    token = os.getenv('TOKEN')
+    main(credentials, token)
 
